@@ -2,8 +2,8 @@ package com.main.commerce.config;
 
 import com.main.commerce.jwt.JwtAuthenticationFilter;
 import com.main.commerce.jwt.JwtEntryPoint;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,9 +20,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 
 
-@Configurable
+@Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -38,17 +39,17 @@ public class SecurityConfig {
     }
 
     @Bean
-    public JwtAuthenticationFilter jwtTokenFilter() {
+    public JwtAuthenticationFilter jwtTokenFilter(){
         return new JwtAuthenticationFilter();
     }
 
     @Bean
-    public JwtEntryPoint jwtEntryPoint() {
+    public JwtEntryPoint jwtEntryPoint(){
         return new JwtEntryPoint();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
