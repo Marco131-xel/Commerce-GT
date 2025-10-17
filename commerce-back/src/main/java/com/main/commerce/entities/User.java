@@ -6,34 +6,46 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "usuarios")
 
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
+    private Long idUsuario;
 
-    @NotBlank
-    @Column(unique = true, nullable = false)
-    private String userName;
+    @Column(name = "nombre", nullable = false, length = 100)
+    private String nombre;
 
-    @NotBlank
-    @Column(nullable = false)
-    private String password;
+    @Column(name = "apellido", nullable = false, length = 100)
+    private String apellido;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    @Column(name = "correo", nullable = false, unique = true, length = 150)
+    private String correo;
 
-    public User(String userName, String password, Role role) {
-        this.userName = userName;
-        this.password = password;
-        this.role = role;
-    }
+    @Column(name = "contrasena", nullable = false)
+    private String contrasena;
+
+    @Column(name = "telefono", nullable = false)
+    private String telefono;
+
+    @Column(name = "direccion")
+    private String direccion;
+
+    @Column(name = "tipo_usuario", nullable = false, length = 20)
+    private String tipoUsuario;
+
+    @Column(name = "estado", length = 15)
+    private String estado = "ACTIVO";
+
+    @Column(name = "fecha_registro")
+    private LocalDateTime fechaRegistro = LocalDateTime.now();
+
 }

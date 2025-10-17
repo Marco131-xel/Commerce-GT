@@ -13,8 +13,13 @@ import { AuthService } from '../services/auth.service';
 export class RegisterComponent {
 
   user = {
-    userName: '',
-    password: ''
+    nombre: '',
+    apellido: '',
+    correo: '',
+    contrasena: '',
+    telefono: '',
+    direccion: '',
+    tipoUsuario: ''
   };
 
   constructor(private authService: AuthService) {}

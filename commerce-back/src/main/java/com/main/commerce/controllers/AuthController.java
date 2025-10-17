@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -29,7 +30,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Revise sus credenciales");
         }
         try {
-            String jwt = authService.authenticate(loginUserDto.getUserName(), loginUserDto.getPassword());
+            String jwt = authService.authenticate(loginUserDto.getCorreo(), loginUserDto.getContrasena());
             return ResponseEntity.ok(jwt);
         } catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -37,15 +38,19 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@Valid @RequestBody NewUserDto newUserDto, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
-            return ResponseEntity.badRequest().body("Revise los campos");
+    public ResponseEntity<?> register(@Valid @RequestBody NewUserDto newUserDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(Map.of("message", "Revise los campos"));
         }
         try {
             authService.registerUser(newUserDto);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Registrado");
-        } catch (IllegalArgumentException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(Map.of("message", "Usuario registrado"));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError()
+                    .body(Map.of("error", "Error al registrar usuario"));
         }
     }
 

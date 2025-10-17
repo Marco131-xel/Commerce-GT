@@ -2,9 +2,7 @@ package com.main.commerce.services;
 
 
 import com.main.commerce.dtos.NewUserDto;
-import com.main.commerce.entities.Role;
 import com.main.commerce.entities.User;
-import com.main.commerce.enums.RoleList;
 import com.main.commerce.jwt.JwtUtil;
 import com.main.commerce.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,20 +31,27 @@ public class AuthService {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
 
-    public String authenticate(String username, String password){
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,password);
+    public String authenticate(String correo, String contrasena) {
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(correo, contrasena);
         Authentication authResult = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authResult);
         return jwtUtil.generateToken(authResult);
     }
 
-    public void registerUser(NewUserDto newUserDto){
-        if (userService.existsByUserName(newUserDto.getUserName())){
-            throw new IllegalArgumentException("El nombre de usuario ya existe");
+    public void registerUser(NewUserDto dto) {
+        if (userService.existsByCorreo(dto.getCorreo())) {
+            throw new IllegalArgumentException("El correo ya está registrado");
         }
 
-        Role roleUser = roleRepository.findByName(RoleList.ROLE_USER).orElseThrow(()->new RuntimeException("Rol no encontrado"));
-        User user = new User(newUserDto.getUserName(), passwordEncoder.encode(newUserDto.getPassword()) , roleUser);
+        User user = new User();
+        user.setNombre(dto.getNombre());
+        user.setApellido(dto.getApellido());
+        user.setCorreo(dto.getCorreo());
+        user.setContrasena(passwordEncoder.encode(dto.getContrasena()));
+        user.setTelefono(dto.getTelefono());
+        user.setDireccion(dto.getDireccion());
+        user.setTipoUsuario(dto.getTipoUsuario());
+
         userService.save(user);
     }
 }

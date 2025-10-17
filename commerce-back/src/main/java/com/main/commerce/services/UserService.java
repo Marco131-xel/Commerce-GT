@@ -24,20 +24,20 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userRepository.findByUserName(userName)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getName().toString());
+    public UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
+        User user = userRepository.findByCorreo(correo)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + user.getTipoUsuario());
 
         return new org.springframework.security.core.userdetails.User(
-                user.getUserName(),
-                user.getPassword(),
+                user.getCorreo(),
+                user.getContrasena(),
                 Collections.singleton(authority)
         );
     }
 
-    public boolean existsByUserName(String userName) {
-        return userRepository.existsByUserName(userName);
+    public boolean existsByCorreo(String correo) {
+        return userRepository.existsByCorreo(correo);
     }
 
     public void save(User user) {
