@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   // funcion para loguear usuarios
-  login(nombre: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, {nombre, password});
+  login(correo: string, contrasena: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, { correo, contrasena });
   }
 }

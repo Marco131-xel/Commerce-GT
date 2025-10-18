@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,22 +20,33 @@ export class RegisterComponent {
     contrasena: '',
     telefono: '',
     direccion: '',
-    tipoUsuario: ''
+    tipoUsuario: 'COMUN'
   };
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  onSubmit() {
+  onSubmit(form: any) {
+    if (form.invalid) {
+      Object.values(form.controls).forEach((control: any) => {
+        control.markAsTouched();
+      });
+      return;
+    }
     this.authService.register(this.user).subscribe({
       next: (response) => {
         console.log('Registro exitoso', response);
         alert('Usuario creado');
+        this.login();
       },
       error: (error) => {
         console.log('Error al registrar', error);
         alert('Error al crear usuario');
       }
     });
+  }
+
+  login() {
+    this.router.navigate(['/']);
   }
 
 }

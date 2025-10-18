@@ -6,6 +6,7 @@ import com.main.commerce.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,17 +26,32 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody LoginUserDto loginUserDto, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
-            return ResponseEntity.badRequest().body("Revise sus credenciales");
+    public ResponseEntity<?> login(@Valid @RequestBody LoginUserDto loginUserDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Revise sus credenciales"));
         }
+
         try {
             String jwt = authService.authenticate(loginUserDto.getCorreo(), loginUserDto.getContrasena());
-            return ResponseEntity.ok(jwt);
-        } catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.ok(Map.of(
+                    "message", "Inicio de sesión exitoso",
+                    "token", jwt
+            ));
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
+                    "error", "Usuario no encontrado"
+            ));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
+                    "error", e.getMessage()
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
+                    "error", "Credenciales inválidas o usuario no autorizado"
+            ));
         }
     }
+
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody NewUserDto newUserDto, BindingResult bindingResult) {

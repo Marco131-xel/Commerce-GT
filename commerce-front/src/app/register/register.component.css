@@ -1,0 +1,75 @@
+body {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  animation: fadeIn 0.8s ease;
+}
+
+.register-card h2 {
+  color: #2575fc;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.register-card .form-control {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  transition: all 0.2s ease;
+}
+
+.register-card .form-control:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 5px rgba(37, 117, 252, 0.4);
+}
+
+.register-card button {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  border: none;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+}
+
+.register-card button:hover {
+  opacity: 0.85;
+}
+
+.register-card .btn-secondary {
+  background: #6c757d;
+  border: none;
+  transition: background 0.3s ease;
+  border-radius: 10px;
+}
+
+.register-card .btn-secondary:hover {
+  background: #5a6268;
+}
+
+.text-danger {
+  font-size: 0.9rem;
+  margin-top: 3px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

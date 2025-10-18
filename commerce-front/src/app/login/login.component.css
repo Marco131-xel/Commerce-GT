@@ -1,11 +1,70 @@
 body {
-    background: linear-gradient(to right, #2575fc, #6a11cb);
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: none;
+  backdrop-filter: blur(12px);
 }
 
 .gradient-custom-2 {
   background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
 }
 
-.gradient-form {
-  height: 100vh;
+.btn-login {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  background: linear-gradient(to right, #5b0eb8, #1f5de2);
+  transform: scale(1.03);
+}
+
+.btn-outline-register {
+  border: 2px solid #6a11cb;
+  color: #6a11cb;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.btn-outline-register:hover {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.info-text h4 {
+  font-weight: 700;
+}
+
+.info-text p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+}
+
+.form-control:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 0 0.2rem rgba(106, 17, 203, 0.2);
 }
