@@ -35,7 +35,11 @@ public class AuthService {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(correo, contrasena);
         Authentication authResult = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authResult);
-        return jwtUtil.generateToken(authResult);
+        User user = userService.findByCorreo(correo)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+
+        //return jwtUtil.generateToken(authResult);
+        return jwtUtil.generateTokenClaims(correo, user.getTipoUsuario());
     }
 
     public void registerUser(NewUserDto dto) {

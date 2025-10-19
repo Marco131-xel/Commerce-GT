@@ -30,9 +30,17 @@ export class LoginComponent {
     this.authService.login(this.login.correo, this.login.contrasena).subscribe({
       next: (Response) => {
         console.log('Inicio exitoso', Response);
-        alert('Inicio exitoso');
 
         localStorage.setItem('token', Response.token);
+
+        const role = this.authService.getUserRole();
+        console.log('Rol de Usuario: ', role);
+
+        if (role == 'ADMINISTRADOR') {
+          this.router.navigate(['/admin']);
+        } else {
+          alert('no es admin xd')
+        }
       },
       error: (error) => {
         console.log('Error al iniciar sesion', error);
