@@ -58,4 +58,9 @@ public class AuthService {
 
         userService.save(user);
     }
+
+    public User getUserByCorreo(String correo) {
+        return userService.findByCorreo(correo)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+    }
 }

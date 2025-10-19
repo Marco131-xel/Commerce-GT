@@ -33,9 +33,13 @@ public class AuthController {
 
         try {
             String jwt = authService.authenticate(loginUserDto.getCorreo(), loginUserDto.getContrasena());
+            var user = authService.getUserByCorreo(loginUserDto.getCorreo());
+
             return ResponseEntity.ok(Map.of(
                     "message", "Inicio de sesión exitoso",
-                    "token", jwt
+                    "token", jwt,
+                    "nombre", user.getNombre(),
+                    "tipoUsuario", user.getTipoUsuario()
             ));
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
