@@ -40,8 +40,10 @@ export class LoginComponent {
 
         if (role == 'ADMINISTRADOR') {
           this.router.navigate(['/admin']);
+        } else if (role == 'COMUN') {
+          this.router.navigate(['/user'])
         } else {
-          alert('no es admin xd')
+          alert('AUN NO HAY VISTA XD')
         }
       },
       error: (error) => {

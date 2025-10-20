@@ -1,0 +1,14 @@
+.navbar { background: linear-gradient(135deg,#6a11cb,#2575fc); }
+.navbar-brand, .nav-link, .navbar-text { color: #fff !important; }
+.navbar .user-info { display: flex; align-items: center; }
+.navbar .user-info img { 
+    width: 35px; 
+    height: 35px; 
+    object-fit: cover; 
+    border-radius: 50%; 
+}
+.card { border-radius: 12px; transition: transform .12s ease, box-shadow .12s ease; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+.card-img-top { height: 160px; object-fit: cover; border-top-left-radius:12px; border-top-right-radius:12px; }
+.price { font-size: 1.05rem; font-weight:700; }
+.short-desc { min-height: 3.2rem; }
