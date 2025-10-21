@@ -51,4 +51,26 @@ public class UserController {
         userService.deleteUser(user.getIdUsuario());
         return ResponseEntity.ok(Map.of("message", "Cuenta eliminada"));
     }
+
+    // obtener todos los usuarios
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllUsers() {
+        return ResponseEntity.ok(userService.findAll());
+    }
+
+    /* FUNCIONES ADMIN */
+    // actualizar usuario por admin
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateUserById(@PathVariable Long id, @RequestBody UpdateUserDto dto) {
+        User updated = userService.updateUser(id, dto);
+        return ResponseEntity.ok(Map.of("message", "Usuario actualizado", "user", updated));
+    }
+
+    // eliminar usuario por admin
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteUserById(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.ok(Map.of("message", "Usuario eliminado"));
+    }
+
 }

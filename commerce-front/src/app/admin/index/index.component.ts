@@ -12,4 +12,11 @@ import { FooterComponent } from '../layout/footer/footer.component';
 })
 export class IndexComponent {
 
+  nombreUsuario: string | null = null;
+  
+  // mostrar el nombre del usuario
+  ngOnInit(): void {
+    this.nombreUsuario = localStorage.getItem('nombre');
+  }
+
 }

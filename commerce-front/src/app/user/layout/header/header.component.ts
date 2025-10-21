@@ -21,7 +21,10 @@ export class HeaderComponent {
   ngOnInit(): void {
     this.nombreUsuario = localStorage.getItem('nombre');
   }
-
+  
+  inicio() {
+    this.router.navigate(['/user'])
+  }
   perfil(){
     this.router.navigate(['/perfil']);
   }

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @NoArgsConstructor
@@ -70,6 +71,10 @@ public class UserService implements UserDetailsService {
             throw new RuntimeException("Usuario no encontrado");
         }
         userRepository.deleteById(id);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
 }

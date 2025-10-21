@@ -1,0 +1,58 @@
+package com.main.commerce.controllers;
+
+import com.main.commerce.entities.Producto;
+import com.main.commerce.services.ProductoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@CrossOrigin(origins = "http://localhost:4200")
+@RestController
+@RequestMapping("/productos")
+public class ProductoController {
+
+    @Autowired
+    private ProductoService productoService;
+
+    // listar productos del usuario autenticado
+    @GetMapping
+    public ResponseEntity<List<Producto>> listarMisProductos(Authentication auth) {
+        String correo = auth.getName();
+        return ResponseEntity.ok(productoService.listarPorUsuario(correo));
+    }
+
+    // crear producto
+    @PostMapping
+    public ResponseEntity<Producto> crearProducto(Authentication auth, @RequestBody Producto producto) {
+        String correo = auth.getName();
+        return ResponseEntity.ok(productoService.crearProducto(correo, producto));
+    }
+
+    // actualizar producto
+    @PutMapping("/{id}")
+    public ResponseEntity<Producto> actualizarProducto(
+            Authentication auth,
+            @PathVariable Long id,
+            @RequestBody Producto producto
+    ) {
+        String correo = auth.getName();
+        return ResponseEntity.ok(productoService.actualizarProducto(correo, id, producto));
+    }
+
+    // eliminar producto
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarProducto(Authentication auth, @PathVariable Long id) {
+        String correo = auth.getName();
+        productoService.eliminarProducto(correo, id);
+        return ResponseEntity.ok("Producto eliminado correctamente");
+    }
+
+    // listar todos los productos aprobados
+    @GetMapping("/publicos")
+    public ResponseEntity<List<Producto>> listarAprobados() {
+        return ResponseEntity.ok(productoService.listarAprobados());
+    }
+}

@@ -52,5 +52,5 @@ public class TarjetaController {
         tarjetaService.eliminarTarjeta(correo, id);
         return ResponseEntity.ok(Map.of("mensaje", "Tarjeta eliminada correctamente"));
     }
-    
+
 }

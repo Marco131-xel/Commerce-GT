@@ -20,7 +20,18 @@ export class HeaderComponent {
   ngOnInit(): void {
     this.nombreUsuario = localStorage.getItem('nombre');
   }
-  // cerrar sesion
+
+  // boton inicio
+  inicio() {
+    this.router.navigate(['/admin']);
+  }
+
+  // boton empleados
+  empleados() {
+    this.router.navigate(['/empleados']);
+  }
+
+  // boton cerrar sesion
   onLogout() {
     this.authService.logout();
     this.router.navigate(['/']);

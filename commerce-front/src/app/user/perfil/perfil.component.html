@@ -81,35 +81,47 @@
 
                 <!-- Información de Tarjeta -->
                 <div class="mt-4">
-                <h5 class="fw-bold mb-3">💳 Información de Tarjeta</h5>
+                    <h5 class="fw-bold mb-3 text-center text-primary">💳 Tu Tarjeta de Crédito</h5>
 
-                <div *ngIf="tarjeta; else noTarjeta">
-                    <ul class="list-group list-group-flush mb-4">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <strong>Nombre del titular:</strong> <span>{{ tarjeta.nombreTitular }}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <strong>Número:</strong> 
-                        <span>**** **** **** {{ tarjeta.numeroTarjeta.slice(-4) }}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <strong>Expira:</strong> <span>{{ tarjeta.fechaExpiracion }}</span>
-                    </li>
-                    </ul>
+                    <div *ngIf="tarjeta; else noTarjeta">
+                        <div class="credit-card mx-auto">
+                        <div class="card-chip"></div>
+                        <div class="card-logo">
+                            <i class="fab fa-cc-visa"></i>
+                        </div>
 
-                    <button class="btn btn-outline-danger fw-bold">🗑️ Eliminar Tarjeta</button>
-                    <button (click)="agregarTarjeta()" class="btn btn-primary fw-bold">➕ Agregar Tarjeta</button>
-                </div>
+                        <div class="card-number">
+                            **** **** **** {{ tarjeta.numeroTarjeta.slice(-4) }}
+                        </div>
 
-                <ng-template #noTarjeta>
-                    <div class="alert alert-warning text-center">
-                    ⚠️ No tienes una tarjeta registrada.
+                        <div class="card-details">
+                            <div>
+                            <div class="label">Titular</div>
+                            <div class="value">{{ tarjeta.nombreTitular }}</div>
+                            </div>
+                            <div>
+                            <div class="label">Expira</div>
+                            <div class="value">{{ tarjeta.fechaExpiracion }}</div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <button class="btn btn-danger fw-bold w-100 mt-4 shadow-sm" (click)="eliminarTarjeta()">
+                        🗑️ Eliminar Tarjeta
+                        </button>
                     </div>
-                    <button (click)="agregarTarjeta()" class="btn btn-primary fw-bold w-100">
-                    ➕ Agregar Tarjeta
-                    </button>
-                </ng-template>
-                </div>
+
+                    <ng-template #noTarjeta>
+                        <div class="text-center py-5">
+                        <i class="fas fa-credit-card fa-3x text-secondary mb-3"></i>
+                        <h6 class="fw-bold text-secondary">Aún no tienes tarjetas registradas</h6>
+                        <p class="text-muted mb-4">Agrega una tarjeta para comprar fácilmente.</p>
+                        <button (click)="agregarTarjeta()" class="btn btn-gradient fw-bold px-4 py-2 shadow">
+                            ➕ Agregar Tarjeta
+                        </button>
+                        </div>
+                    </ng-template>
+                    </div>
 
             </div>
           </div>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { HttpHeaders } from '@angular/common/http';
+import { User } from '../admin/models/user.model';
 
 export interface JwtPayload {
   sub: string;
@@ -21,6 +22,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   
+  /* FUNCIONES PARA LOGIN Y REGISTRASE  */
+
   // funcion para registrar usuarios
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
@@ -44,7 +47,24 @@ export class AuthService {
     localStorage.removeItem('token');
   }
 
+  /* FUNCIONES PARA ADMIN */
+
+  // mostrar los usuarios
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.userUrl}/all`);
+  }
+
+  // editar los usuarios
+  updateUser(id: number, updatedUser: any): Observable<any> {
+    return this.http.put(`${this.userUrl}/update/${id}`, updatedUser);
+  }
+  // eliminar los usuarios
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete(`${this.userUrl}/delete/${id}`);
+  }
+  
   /* FUNCIONES PARA EL USUARIO COMUN */
+
   // obtener el perfil del usuario
   getProfile(): Observable<any> {
     const token = localStorage.getItem('token');
