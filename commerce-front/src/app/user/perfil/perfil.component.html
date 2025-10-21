@@ -1,69 +1,90 @@
 <div class="app-container">
-    <app-header></app-header>
-    <main class="flex-grow-1">
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    
-                    <!-- Tarjeta de perfil -->
-                    <div class="card shadow-lg border-0 rounded-4">
-                        <div class="card-header text-center text-white rounded-top-4" 
-                            style="background: linear-gradient(135deg,#6a11cb,#2575fc);">
-                            <h3 class="mb-0">👤 Perfil del Usuario</h3>
-                        </div>
+  <app-header></app-header>
 
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center mb-4">
-                                <img src="https://cdn-icons-png.flaticon.com/512/5989/5989226.png" 
-                                    alt="Foto Usuario" 
-                                    class="rounded-circle me-3 border shadow"
-                                    width="80" height="80">
-                                <div>
-                                    <h4 class="mb-0">{{ nombreUsuario || 'Usuario' }}</h4>
-                                    <small class="text-muted">Usuario registrado</small>
-                                </div>
-                            </div>
+  <main class="flex-grow-1">
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
 
-                            <ul class="list-group list-group-flush mb-4">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <strong>Correo:</strong> <span>mi dpi</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <strong>Teléfono:</strong> <span>123456</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <strong>Dirección:</strong> <span>My house</span>
-                                </li>
-                            </ul>
-
-                            <!-- Botones de acción -->
-                            <div class="d-flex justify-content-between mt-4">
-                                <a href="" 
-                                class="btn btn-warning fw-bold">
-                                ✏️ Editar
-                                </a>
-
-                                <!-- Eliminar cuenta con form -->
-                                <form action="" 
-                                    method="POST" 
-                                    onsubmit="return confirm('⚠️ ¿Seguro que deseas eliminar tu cuenta?')">
-                                    <button type="submit" class="btn btn-danger fw-bold">🗑️ Eliminar</button>
-                                </form>
-
-                                <a href="" class="btn btn-secondary fw-bold">
-                                    ⬅️ Volver
-                                </a>
-                                <a (click)="onLogout()" class="btn btn-dark fw-bold">
-                                    🔒 Cerrar Sesión
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+          <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header text-center text-white rounded-top-4"
+              style="background: linear-gradient(135deg,#6a11cb,#2575fc);">
+              <h3 class="mb-0">👤 Perfil del Usuario</h3>
             </div>
-        </div>
 
-    </main>
-    <app-footer></app-footer>
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-4">
+                <img src="https://cdn-icons-png.flaticon.com/512/5989/5989226.png"
+                  alt="Foto Usuario"
+                  class="rounded-circle me-3 border shadow"
+                  width="80" height="80">
+                <div>
+                  <h4 class="mb-0">{{ user.nombre || 'Usuario' }}</h4>
+                  <small class="text-muted">Usuario registrado</small>
+                </div>
+              </div>
+
+              <!-- Información -->
+              <div *ngIf="!editMode">
+                <ul class="list-group list-group-flush mb-4">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <strong>Correo:</strong> <span>{{ user.correo }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <strong>Teléfono:</strong> <span>{{ user.telefono }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <strong>Dirección:</strong> <span>{{ user.direccion }}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Formulario de edición -->
+              <div *ngIf="editMode">
+                <form (ngSubmit)="updateProfile()">
+                  <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" [(ngModel)]="user.nombre" name="nombre" class="form-control" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Apellido</label>
+                    <input type="text" [(ngModel)]="user.apellido" name="apellido" class="form-control" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Correo</label>
+                    <input type="email" [(ngModel)]="user.correo" name="correo" class="form-control" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Teléfono</label>
+                    <input type="text" [(ngModel)]="user.telefono" name="telefono" class="form-control" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Dirección</label>
+                    <input type="text" [(ngModel)]="user.direccion" name="direccion" class="form-control" />
+                  </div>
+                  <button type="submit" class="btn btn-success fw-bold w-100">💾 Guardar Cambios</button>
+                </form>
+              </div>
+
+              <!-- Botones -->
+              <div class="d-flex justify-content-between mt-4">
+                <button (click)="toggleEdit()" class="btn btn-warning fw-bold">
+                  {{ editMode ? '❌ Cancelar' : '✏️ Editar' }}
+                </button>
+
+                <button (click)="deleteAccount()" class="btn btn-danger fw-bold">🗑️ Eliminar</button>
+
+                <a routerLink="/inicioUser" class="btn btn-secondary fw-bold">⬅️ Volver</a>
+
+                <button (click)="onLogout()" class="btn btn-dark fw-bold">🔒 Cerrar Sesión</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
 </div>

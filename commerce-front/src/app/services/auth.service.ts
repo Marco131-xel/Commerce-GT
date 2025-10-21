@@ -15,6 +15,7 @@ export interface JwtPayload {
 export class AuthService {
   
   private apiUrl = 'http://localhost:8080/auth';
+  private userUrl = 'http://localhost:8080/user';
 
   constructor(private http: HttpClient) { }
   
@@ -39,5 +40,27 @@ export class AuthService {
   // funcion para cerrar sesion
   logout() {
     localStorage.removeItem('token');
+  }
+
+  /* FUNCIONES PARA EL USUARIO COMUN */
+  // obtener el perfil del usuario
+  getProfile(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = { Authorization: `Bearer ${token}` };
+    return this.http.get(`${this.userUrl}/me`, { headers });
+  }
+
+  // actualizar perfil
+  updateProfile(updatedUser: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = { Authorization: `Bearer ${token}` };
+    return this.http.put(`${this.userUrl}/update`, updatedUser, { headers });
+  }
+
+  // eliminar cuenta
+  deleteAccount(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = { Authorization: `Bearer ${token}` };
+    return this.http.delete(`${this.userUrl}/delete`, { headers });
   }
 }

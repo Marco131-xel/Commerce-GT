@@ -48,7 +48,7 @@ public class JwtUtil {
                 .setClaims(claims)
                 .setSubject(correo)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime() + expiration + 1000L))
+                .setExpiration(new Date(System.currentTimeMillis() + (expiration * 1000L)))
                 .signWith(key,SignatureAlgorithm.HS256)
                 .compact();
     }

@@ -1,5 +1,6 @@
 package com.main.commerce.services;
 
+import com.main.commerce.dtos.UpdateUserDto;
 import com.main.commerce.entities.User;
 import com.main.commerce.repositories.UserRepository;
 import lombok.NoArgsConstructor;
@@ -48,4 +49,27 @@ public class UserService implements UserDetailsService {
     public Optional<User> findByCorreo(String correo) {
         return userRepository.findByCorreo(correo);
     }
+
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    public User updateUser(Long id, UpdateUserDto dto) {
+        return userRepository.findById(id).map(user -> {
+            user.setNombre(dto.getNombre());
+            user.setApellido(dto.getApellido());
+            user.setCorreo(dto.getCorreo());
+            user.setTelefono(dto.getTelefono());
+            user.setDireccion(dto.getDireccion());
+            return userRepository.save(user);
+        }).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    }
+
+    public void deleteUser(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new RuntimeException("Usuario no encontrado");
+        }
+        userRepository.deleteById(id);
+    }
+
 }
