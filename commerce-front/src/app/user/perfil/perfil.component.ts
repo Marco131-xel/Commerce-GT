@@ -19,10 +19,13 @@ export class PerfilComponent implements OnInit {
   editMode: boolean = false;
 
   nombreUsuario: string | null = null;
+  tarjeta: any = null;
   
   constructor(private authService: AuthService, private router: Router) {}
+
   ngOnInit(): void {
     this.loadUserProfile();
+    this.cargarTarjeta();
   }
 
   // cargar datos 
@@ -84,4 +87,29 @@ export class PerfilComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  /* TARJETA DE CREDITO */
+  agregarTarjeta() {
+    this.router.navigate(['/tarjeta']);
+  }
+
+  cargarTarjeta() {
+    this.authService.getTarjetas().subscribe({
+      next: (tarjetas) => {
+        this.tarjeta = tarjetas.length > 0 ? tarjetas[0] : null;
+      },
+      error: (err) => console.error('Error al cargar tarjeta:', err)
+    });
+  }
+
+  eliminarTarjeta() {
+    if (this.tarjeta && confirm('¿Deseas eliminar la tarjeta?')) {
+      this.authService.eliminarTarjeta(this.tarjeta.idTarjeta).subscribe({
+        next: () => {
+          alert('Tarjeta eliminada correctamente');
+          this.tarjeta = null;
+        },
+        error: (err) => console.error('Error al eliminar tarjeta:', err)
+      });
+    }
+  }
 }

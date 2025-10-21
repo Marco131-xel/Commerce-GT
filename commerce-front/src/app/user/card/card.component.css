@@ -1,0 +1,199 @@
+/* Título */
+h1 {
+  color: #34495e;
+  font-weight: 700;
+}
+
+/* Tarjeta de crédito */
+.credit-card {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efecto hover */
+.credit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Efectos decorativos */
+.credit-card::before,
+.credit-card::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+.credit-card::before {
+  top: -50%;
+  right: -50%;
+}
+
+.credit-card::after {
+  bottom: -50%;
+  left: -50%;
+}
+
+/* Número de tarjeta */
+.card-number {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  margin: 20px 0;
+  font-weight: 600;
+}
+
+/* Detalles de la tarjeta */
+.card-details {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.card-details .small {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* Chip y logo */
+.card-chip {
+  width: 50px;
+  height: 40px;
+  background: #ffcc00;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.card-logo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  opacity: 0.9;
+}
+
+/* Botón de eliminar */
+.btn-outline-danger {
+  border-color: #e74c3c;
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.btn-outline-danger:hover {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+/* Estado vacío */
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #7f8c8d;
+  background-color: #f5f6fa;
+  border-radius: 12px;
+}
+
+.empty-state i {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  color: #bdc3c7;
+}
+
+.empty-state h3 {
+  color: #34495e;
+  font-weight: 700;
+}
+
+.empty-state p {
+  color: #555;
+}
+
+/* CUADRO AGREGAR */
+.card {
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  margin-bottom: 20px;
+  border: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.card-header {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 12px 12px 0 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+.card-body {
+  background-color: #fff;
+  color: #34495e;
+  padding: 20px;
+  border-radius: 0 0 12px 12px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #34495e;
+}
+
+.form-control {
+  background-color: #f5f6fa;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  color: #34495e;
+}
+
+.form-control:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 0 0.2rem rgba(106,17,203,0.25);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border: none;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.form-check-label {
+  color: #34495e;
+  font-weight: 500;
+}
+
+p.small i {
+  font-size: 1rem;
+}
+
+p.small {
+  color: #555;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+}
+
+.required::after {
+    content: " *";
+    color: #e74c3c;
+}

@@ -1,0 +1,110 @@
+<div class="app-container">
+  <app-header></app-header>
+
+  <main class="flex-grow-1">
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1 class="mb-4">Mis Tarjetas de Crédito</h1>
+
+          <!-- Lista de Tarjetas -->
+          <div *ngFor="let tarjeta of tarjetas; let i = index" class="credit-card">
+            <div class="card-chip"></div>
+            <div class="card-logo">
+              <i class="fab fa-cc-visa"></i>
+            </div>
+            <div class="card-number">**** **** **** {{ tarjeta.numeroTarjeta.slice(-4) }}</div>
+            <div class="card-details">
+              <div>
+                <div class="small">Titular</div>
+                <div>{{ tarjeta.nombreTitular }}</div>
+              </div>
+              <div>
+                <div class="small">Vence</div>
+                <div>{{ tarjeta.fechaExpiracion }}</div>
+              </div>
+            </div>
+            <button (click)="eliminarTarjeta(i)" class="btn btn-outline-danger fw-bold w-100 mt-3">🗑️ Eliminar Tarjeta</button>
+          </div>
+
+          <!-- Estado vacío -->
+          <div id="empty-state" class="empty-state" [class.d-none]="tarjetas.length > 0">
+            <i class="fas fa-credit-card"></i>
+            <h3>No tienes tarjetas guardadas</h3>
+            <p>Agrega tu primera tarjeta de crédito para comenzar</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <!-- Formulario para agregar tarjeta -->
+          <div class="card">
+            <div class="card-header">
+              <i class="fas fa-plus-circle me-2"></i> Agregar Nueva Tarjeta
+            </div>
+            <div class="card-body">
+              <form (ngSubmit)="agregarTarjeta()">
+                <div class="mb-3">
+                  <label class="form-label required">Número de Tarjeta</label>
+                  <input type="text" class="form-control" maxlength="19"
+                    [(ngModel)]="numero_tarjeta" name="numero_tarjeta"
+                    (input)="formatNumeroTarjeta($event)" placeholder="1234 5678 9012 3456" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label required">Nombre del Titular</label>
+                  <input type="text" class="form-control" [(ngModel)]="nombre_titular" name="nombre_titular"
+                    placeholder="JUAN PEREZ" required>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label required">Fecha de Expiración</label>
+                    <input type="text" class="form-control" maxlength="5"
+                      [(ngModel)]="fecha_expiracion" name="fecha_expiracion"
+                      (input)="formatFechaExpiracion($event)" placeholder="MM/AA" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label required">CVV</label>
+                    <input type="text" class="form-control" maxlength="4"
+                      [(ngModel)]="cvv" name="cvv"
+                      (input)="formatCVV($event)" placeholder="123" required>
+                  </div>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="tarjeta_principal" name="tarjeta_principal">
+                  <label class="form-check-label">
+                    Establecer como tarjeta principal
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                  <i class="fas fa-save me-2"></i> Guardar Tarjeta
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Información de seguridad -->
+          <div class="card mt-4">
+            <div class="card-header">
+              <i class="fas fa-shield-alt me-2"></i> Seguridad
+            </div>
+            <div class="card-body">
+              <p class="small">
+                <i class="fas fa-lock text-success me-2"></i>
+                Tus datos están protegidos con encriptación de alta seguridad.
+              </p>
+              <p class="small">
+                <i class="fas fa-eye-slash text-info me-2"></i>
+                Los números de tarjeta se muestran parcialmente por seguridad.
+              </p>
+              <p class="small">
+                <i class="fas fa-ban text-danger me-2"></i>
+                Nunca compartimos tu información con terceros.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>
