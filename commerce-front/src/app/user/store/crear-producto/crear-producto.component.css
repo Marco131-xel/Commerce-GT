@@ -1,0 +1,96 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #f5f7fa;
+  font-family: 'Poppins', sans-serif;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 700px;
+  width: 100%;
+}
+
+.card {
+  width: 100%;
+  background: #fff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 2rem;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #444;
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 6px rgba(106, 17, 203, 0.3);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 0.7rem;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  transform: scale(1.02);
+}
+
+.alert {
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+footer {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto;
+}

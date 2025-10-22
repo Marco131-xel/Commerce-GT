@@ -110,3 +110,26 @@ CREATE TABLE logistica (
     nueva_fecha_entrega DATE,
     observacion TEXT
 );
+
+-- inserts para categorias
+INSERT INTO categorias (nombre) VALUES 
+('Tecnología'),
+('Hogar'),
+('Académico'),
+('Personal'),
+('Decoración'),
+('Otro'),
+('Salud'),
+('Deportes'),
+('Entretenimiento'),
+('Moda'),
+('Viajes'),
+('Finanzas'),
+('Comida'),
+('Automóvil'),
+('Mascotas'),
+('Jardinería'),
+('Arte'),
+('Música'),
+('Libros'),
+('Trabajo');

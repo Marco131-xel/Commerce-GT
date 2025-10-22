@@ -39,7 +39,8 @@ public class AuthController {
                     "message", "Inicio de sesión exitoso",
                     "token", jwt,
                     "nombre", user.getNombre(),
-                    "tipoUsuario", user.getTipoUsuario()
+                    "tipoUsuario", user.getTipoUsuario(),
+                    "id_usuario", user.getIdUsuario()
             ));
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(

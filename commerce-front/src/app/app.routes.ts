@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { UserGuard } from './guards/user.guard';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { IndexComponent as AdminIndexComponent } from './admin/index/index.component';
@@ -9,15 +10,23 @@ import { CardComponent } from './user/card/card.component';
 import { EmpleadosComponent } from './admin/empleados/empleados.component';
 import { UsuariosComponent } from './admin/usuarios/usuarios.component';
 import { EditComponent } from './admin/edit/edit.component';
+import { CrearProductoComponent } from './user/store/crear-producto/crear-producto.component';
 
 export const routes: Routes = [
-    { path: '', component: LoginComponent},
-    { path: 'registrar', component: RegisterComponent},
-    { path: 'admin', component: AdminIndexComponent, canActivate: [AuthGuard]},
-    { path: 'user', component: UserIndexComponent, canActivate: [AuthGuard]},
-    { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
-    { path: 'tarjeta', component: CardComponent, canActivate: [AuthGuard]},
-    { path: 'empleados', component: EmpleadosComponent, canActivate: [AuthGuard]},
-    { path: 'crearUser', component: UsuariosComponent, canActivate: [AuthGuard]},
-    { path: 'editarUser/:id', component: EditComponent, canActivate: [AuthGuard]}
+  { path: '', component: LoginComponent },
+  { path: 'registrar', component: RegisterComponent },
+
+  /* ADMIN */
+  { path: 'admin', component: AdminIndexComponent, canActivate: [AdminGuard] },
+  { path: 'empleados', component: EmpleadosComponent, canActivate: [AdminGuard] },
+  { path: 'crearUser', component: UsuariosComponent, canActivate: [AdminGuard] },
+  { path: 'editarUser/:id', component: EditComponent, canActivate: [AdminGuard] },
+
+  /* USER */
+  { path: 'user', component: UserIndexComponent, canActivate: [UserGuard] },
+  { path: 'perfil', component: PerfilComponent, canActivate: [UserGuard] },
+  { path: 'tarjeta', component: CardComponent, canActivate: [UserGuard] },
+  { path: 'crear-producto', component: CrearProductoComponent, canActivate: [UserGuard]},
+
+  { path: '**', redirectTo: '' }
 ];

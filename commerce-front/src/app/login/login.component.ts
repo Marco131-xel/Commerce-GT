@@ -34,6 +34,7 @@ export class LoginComponent {
         localStorage.setItem('token', Response.token);
         localStorage.setItem('nombre', Response.nombre);
         localStorage.setItem('tipoUsuario', Response.tipoUsuario);
+        localStorage.setItem('id_usuario', Response.id_usuario)
 
         const role = this.authService.getUserRole();
         console.log('Rol de Usuario: ', role);
