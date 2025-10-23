@@ -1,0 +1,13 @@
+.footer-purple {
+    background: linear-gradient(90deg, #6a11cb, #8e2de2);
+}
+
+footer {
+text-align: center;
+padding: 10px;
+border-top: 1px solid #444;
+position: fixed;
+bottom: 0;
+width: 100%;
+font-size: 14px;
+}

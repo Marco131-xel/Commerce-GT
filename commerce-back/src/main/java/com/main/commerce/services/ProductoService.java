@@ -1,5 +1,6 @@
 package com.main.commerce.services;
 
+import com.main.commerce.dtos.ProductoDto;
 import com.main.commerce.entities.Categoria;
 import com.main.commerce.entities.Producto;
 import com.main.commerce.entities.User;
@@ -90,4 +91,40 @@ public class ProductoService {
                 .filter(p -> "APROBADO".equals(p.getEstadoRevision()))
                 .toList();
     }
+
+    // listar todos los productos pendientes (moderador)
+    public List<ProductoDto> listarPendientesDTO() {
+        return productoRepository.findAll().stream()
+                .filter(p -> "PENDIENTE".equals(p.getEstadoRevision()))
+                .map(p -> new ProductoDto(
+                        p.getIdProducto(),
+                        p.getNombre(),
+                        p.getDescripcion(),
+                        p.getPrecio(),
+                        p.getImagenUrl(),
+                        p.getStock(),
+                        p.getEstadoProducto(),
+                        p.getEstadoRevision(),
+                        p.getFechaPublicacion(),
+                        p.getCategoria().getNombre(),
+                        p.getUsuario().getNombre()
+                ))
+                .toList();
+    }
+
+    // actualizar el estado de revision para moderador
+    public void actualizarEstadoRevision(Long idProducto, String nuevoEstado) {
+        Producto producto = productoRepository.findById(idProducto)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+
+        if (!"APROBADO".equalsIgnoreCase(nuevoEstado) &&
+                !"RECHAZADO".equalsIgnoreCase(nuevoEstado) &&
+                !"PENDIENTE".equalsIgnoreCase(nuevoEstado)) {
+            throw new IllegalArgumentException("Estado de revisión no válido: " + nuevoEstado);
+        }
+
+        producto.setEstadoRevision(nuevoEstado.toUpperCase());
+        productoRepository.save(producto);
+    }
+
 }

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-purple shadow-sm fixed-top">
+<div class="container-fluid">
+    <!-- Usuario -->
+    <img src="https://static.vecteezy.com/system/resources/thumbnails/014/396/452/small/comic-style-user-icon-with-transparent-background-file-png.png" 
+        alt="Logo usuario" 
+        class="rounded-circle me-2" 
+        style="width: 35px; height: 35px; object-fit: cover;">
+    <span class="navbar-text me-3 text-white fw-bold">
+    {{ nombreUsuario || 'Usuario' }}
+    </span>
+
+    <!-- Boton colapsable -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarWorker" aria-controls="navbarWorker" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú -->
+    <div class="collapse navbar-collapse" id="navbarWorker">
+    <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link text-white fw-semibold" (click)="inicio()">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-semibold" (click)="productos()">Solicitudes</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-semibold">Gestion</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-semibold">Productos</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-semibold">Usuarios</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-semibold" (click)="perfil()">Perfil</a></li>
+    </ul>
+    
+    </div>
+</div>
+</nav>

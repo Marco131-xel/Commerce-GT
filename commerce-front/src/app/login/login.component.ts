@@ -43,6 +43,8 @@ export class LoginComponent {
           this.router.navigate(['/admin']);
         } else if (role == 'COMUN') {
           this.router.navigate(['/user'])
+        } else if (role == 'MODERADOR'){
+          this.router.navigate(['/moderador']);
         } else {
           alert('AUN NO HAY VISTA XD')
         }

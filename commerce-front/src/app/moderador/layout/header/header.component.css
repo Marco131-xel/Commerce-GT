@@ -1,0 +1,8 @@
+.nav-link {
+    cursor: pointer;
+}
+
+.navbar-purple {
+    background: linear-gradient(90deg, #6a11cb, #8e2de2);
+}
+

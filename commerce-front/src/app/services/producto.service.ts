@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Producto, Categoria, ProductoRequest } from '../user/models/producto.model';
+import { ProductoModerador } from '../moderador/models/producto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,4 +51,14 @@ export class ProductoService {
     listarCategorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(this.categoriaUrl);
     }
+
+    // listar productos pendientes (moderador)
+    listarPendientes(): Observable<ProductoModerador[]> {
+      return this.http.get<ProductoModerador[]>(`${this.apiUrl}/pendientes`, { headers: this.getAuthHeaders() });
+    }
+
+    actualizarEstado(idProducto: number, estado: 'APROBADO' | 'RECHAZADO'): Observable<any> {
+      return this.http.put(`${this.apiUrl}/${idProducto}/estado`, { estadoRevision: estado }, { headers: this.getAuthHeaders() });
+    }
+    
 }
