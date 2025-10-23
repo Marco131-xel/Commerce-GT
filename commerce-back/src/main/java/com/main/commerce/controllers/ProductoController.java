@@ -26,6 +26,23 @@ public class ProductoController {
         return ResponseEntity.ok(productoService.listarPorUsuario(correo));
     }
 
+    // listar todos los productos del usuario con DTO
+    @GetMapping("/mis-productos")
+    public ResponseEntity<List<ProductoDto>> listarMisProductosDTO(Authentication auth) {
+        String correo = auth.getName();
+        return ResponseEntity.ok(productoService.listarMisProductosDTO(correo));
+    }
+
+    // listar productos del usuario filtrados por estado (pendiente, aprobado, rechazado)
+    @GetMapping("/mis-productos/{estado}")
+    public ResponseEntity<List<ProductoDto>> listarMisProductosPorEstado(
+            Authentication auth,
+            @PathVariable String estado
+    ) {
+        String correo = auth.getName();
+        return ResponseEntity.ok(productoService.listarMisProductosPorEstado(correo, estado.toUpperCase()));
+    }
+
     // crear producto
     @PostMapping
     public ResponseEntity<Producto> crearProducto(Authentication auth, @RequestBody Producto producto) {
@@ -64,6 +81,7 @@ public class ProductoController {
         return ResponseEntity.ok(productoService.listarPendientesDTO());
     }
 
+    // actualizar el estado segun el (moderador)
     @PutMapping("/{id}/estado")
     public ResponseEntity<?> actualizarEstado(@PathVariable Long id, @RequestBody Map<String, String> body) {
         String estado = body.get("estadoRevision");

@@ -31,6 +31,54 @@ public class ProductoService {
         return productoRepository.findAllByUsuario_IdUsuario(usuario.getIdUsuario());
     }
 
+    // listar productos del usuario autenticado con DTO
+    public List<ProductoDto> listarMisProductosDTO(String correo) {
+        User usuario = userRepository.findByCorreo(correo)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        return productoRepository.findAllByUsuario_IdUsuario(usuario.getIdUsuario())
+                .stream()
+                .map(p -> new ProductoDto(
+                        p.getIdProducto(),
+                        p.getNombre(),
+                        p.getDescripcion(),
+                        p.getPrecio(),
+                        p.getImagenUrl(),
+                        p.getStock(),
+                        p.getEstadoProducto(),
+                        p.getEstadoRevision(),
+                        p.getFechaPublicacion(),
+                        p.getCategoria().getNombre(),
+                        p.getUsuario().getNombre()
+                ))
+                .toList();
+    }
+
+    // listar productos del usuario autenticado por estado
+    public List<ProductoDto> listarMisProductosPorEstado(String correo, String estado) {
+        User usuario = userRepository.findByCorreo(correo)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        return productoRepository.findAllByUsuario_IdUsuario(usuario.getIdUsuario())
+                .stream()
+                .filter(p -> p.getEstadoRevision().equalsIgnoreCase(estado))
+                .map(p -> new ProductoDto(
+                        p.getIdProducto(),
+                        p.getNombre(),
+                        p.getDescripcion(),
+                        p.getPrecio(),
+                        p.getImagenUrl(),
+                        p.getStock(),
+                        p.getEstadoProducto(),
+                        p.getEstadoRevision(),
+                        p.getFechaPublicacion(),
+                        p.getCategoria().getNombre(),
+                        p.getUsuario().getNombre()
+                ))
+                .toList();
+    }
+
+
     // crear producto
     public Producto crearProducto(String correo, Producto producto) {
         User usuario = userRepository.findByCorreo(correo)

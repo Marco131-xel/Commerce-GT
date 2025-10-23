@@ -28,7 +28,7 @@ export class HeaderComponent {
   perfil(){
     this.router.navigate(['/perfil']);
   }
-  crear_producto() {
-    this.router.navigate(['/crear-producto']);
+  mi_producto() {
+    this.router.navigate(['/mi-producto']);
   }
 }

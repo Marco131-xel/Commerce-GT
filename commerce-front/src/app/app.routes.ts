@@ -10,6 +10,7 @@ import { CardComponent } from './user/card/card.component';
 import { EmpleadosComponent } from './admin/empleados/empleados.component';
 import { UsuariosComponent } from './admin/usuarios/usuarios.component';
 import { EditComponent } from './admin/edit/edit.component';
+import { ProductoComponent } from './user/store/producto/producto.component';
 import { CrearProductoComponent } from './user/store/crear-producto/crear-producto.component';
 import { InicioComponent as ModeradorComponent } from './moderador/inicio/inicio.component';
 import { PerfilComponent as PerfilModeradorComp } from './moderador/perfil/perfil.component';
@@ -29,6 +30,7 @@ export const routes: Routes = [
   { path: 'user', component: UserIndexComponent, canActivate: [UserGuard] },
   { path: 'perfil', component: PerfilComponent, canActivate: [UserGuard] },
   { path: 'tarjeta', component: CardComponent, canActivate: [UserGuard] },
+  { path: 'mi-producto', component: ProductoComponent, canActivate: [UserGuard] },
   { path: 'crear-producto', component: CrearProductoComponent, canActivate: [UserGuard]},
 
   /* MODERADOR */
