@@ -71,8 +71,16 @@ public class ProductoController {
 
     // listar todos los productos aprobados
     @GetMapping("/publicos")
-    public ResponseEntity<List<Producto>> listarAprobados() {
-        return ResponseEntity.ok(productoService.listarAprobados());
+    public ResponseEntity<List<ProductoDto>> listarAprobados(Authentication auth) {
+        if (auth != null && auth.isAuthenticated()) {
+            String correo = auth.getName();
+            return ResponseEntity.ok(productoService.listarAprobadosExcluyendoUsuario(correo));
+        } else {
+            // Si no hay usuario autenticado, mostrar todos los aprobados
+            return ResponseEntity.ok(
+                    productoService.listarAprobados()
+            );
+        }
     }
 
     // listar todos los productos pendientes (moderador)

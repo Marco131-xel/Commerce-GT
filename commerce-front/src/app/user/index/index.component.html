@@ -2,7 +2,123 @@
   <app-header></app-header>
 
   <main class="flex-grow-1">
-    <h1>vista del usuario</h1>
+    <br />
+    <div class="container py-4">
+      <!-- Introducción -->
+      <div class="p-4 p-md-5 rounded-4 shadow bg-azul text-white mb-4">
+        <h1 class="h3 h-md-2 fw-bold mb-2">Bienvenido a Commerce GT</h1>
+        <p class="mb-0">
+          Explora, compra y vende productos fácilmente en nuestra plataforma.
+          Aquí podrás <strong>publicar artículos</strong>, <strong>gestionar tus ventas</strong>,
+          y <strong>descubrir nuevas ofertas</strong> publicadas por otros usuarios.
+        </p>
+      </div>
+
+      <!-- Tarjetas de funcionalidades -->
+      <div class="row g-3 g-md-4">
+        <!-- Explorar productos -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover h-100 rounded-4 shadow-sm">
+            <div class="card-body d-flex gap-3 align-items-center">
+              <span class="icon-badge bg-primary">
+                <i class="bi bi-shop fs-4 text-white"></i>
+              </span>
+              <div>
+                <h5 class="card-title mb-1">Explorar Productos</h5>
+                <p class="card-text text-muted mb-2">
+                  Encuentra artículos de todo tipo: tecnología, hogar, académico y más.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vender Producto -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover h-100 rounded-4 shadow-sm">
+            <div class="card-body d-flex gap-3 align-items-center">
+              <span class="icon-badge bg-success">
+                <i class="bi bi-bag-plus fs-4 text-white"></i>
+              </span>
+              <div>
+                <h5 class="card-title mb-1">Vender Producto</h5>
+                <p class="card-text text-muted mb-2">
+                  Publica tus productos fácilmente y gana el 95% de tus ventas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carrito de Compras -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover h-100 rounded-4 shadow-sm">
+            <div class="card-body d-flex gap-3 align-items-center">
+              <span class="icon-badge bg-warning">
+                <i class="bi bi-cart4 fs-4 text-white"></i>
+              </span>
+              <div>
+                <h5 class="card-title mb-1">Carrito de Compras</h5>
+                <p class="card-text text-muted mb-2">
+                  Administra tus productos seleccionados antes de pagar.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pedidos -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover h-100 rounded-4 shadow-sm">
+            <div class="card-body d-flex gap-3 align-items-center">
+              <span class="icon-badge bg-info">
+                <i class="bi bi-box-seam fs-4 text-white"></i>
+              </span>
+              <div>
+                <h5 class="card-title mb-1">Mis Pedidos</h5>
+                <p class="card-text text-muted mb-2">
+                  Revisa el estado de tus compras: en curso o entregadas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calificaciones -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover h-100 rounded-4 shadow-sm">
+            <div class="card-body d-flex gap-3 align-items-center">
+              <span class="icon-badge bg-danger">
+                <i class="bi bi-star-half fs-4 text-white"></i>
+              </span>
+              <div>
+                <h5 class="card-title mb-1">Calificaciones</h5>
+                <p class="card-text text-muted mb-2">
+                  Valora productos que hayas comprado y deja comentarios.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mis Productos en Venta -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover h-100 rounded-4 shadow-sm">
+            <div class="card-body d-flex gap-3 align-items-center">
+              <span class="icon-badge bg-secondary">
+                <i class="bi bi-box2-heart fs-4 text-white"></i>
+              </span>
+              <div>
+                <h5 class="card-title mb-1">Mis Productos</h5>
+                <p class="card-text text-muted mb-2">
+                  Administra tus publicaciones activas y en revisión.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <app-footer></app-footer>

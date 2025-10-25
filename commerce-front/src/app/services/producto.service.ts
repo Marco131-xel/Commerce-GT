@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Producto, Categoria, ProductoRequest } from '../user/models/producto.model';
 import { ProductoModerador } from '../moderador/models/producto.model';
-import { MeProducto } from '../user/models/producto.model';
+import { MeProducto, ProductoPublico } from '../user/models/producto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,17 +28,16 @@ export class ProductoService {
     return this.http.get<MeProducto[]>(this.apiUrl, { headers: this.getAuthHeaders() });
     }
   
-  // listar productos del usuario (todos)
-listarMisProductosDTO(): Observable<MeProducto[]> {
-  return this.http.get<MeProducto[]>(`${this.apiUrl}/mis-productos`, { headers: this.getAuthHeaders() });
-}
-
-// listar productos del usuario por estado (PENDIENTE, APROBADO, RECHAZADO)
-listarMisProductosPorEstado(estado: 'PENDIENTE' | 'APROBADO' | 'RECHAZADO'): Observable<MeProducto[]> {
-  return this.http.get<MeProducto[]>(`${this.apiUrl}/mis-productos/${estado}`, { headers: this.getAuthHeaders() });
-}
-
-    
+    // listar productos del usuario (todos)
+    listarMisProductosDTO(): Observable<MeProducto[]> {
+      return this.http.get<MeProducto[]>(`${this.apiUrl}/mis-productos`, { headers: this.getAuthHeaders() });
+    }
+  
+    // listar productos del usuario por estado (PENDIENTE, APROBADO, RECHAZADO)
+    listarMisProductosPorEstado(estado: 'PENDIENTE' | 'APROBADO' | 'RECHAZADO'): Observable<MeProducto[]> {
+      return this.http.get<MeProducto[]>(`${this.apiUrl}/mis-productos/${estado}`, { headers: this.getAuthHeaders() });
+    }
+  
     // crear producto
     crearProducto(producto: ProductoRequest): Observable<Producto> {
     return this.http.post<Producto>(this.apiUrl, producto, { headers: this.getAuthHeaders() });
@@ -55,8 +54,8 @@ listarMisProductosPorEstado(estado: 'PENDIENTE' | 'APROBADO' | 'RECHAZADO'): Obs
     }
     
     // listar todos los productos aprobados
-    listarPublicos(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(`${this.apiUrl}/publicos`);
+    listarPublicos(): Observable<ProductoPublico[]> {
+    return this.http.get<ProductoPublico[]>(`${this.apiUrl}/publicos`);
     }
     
     // listar categorías

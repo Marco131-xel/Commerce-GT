@@ -15,6 +15,8 @@ import { CrearProductoComponent } from './user/store/crear-producto/crear-produc
 import { InicioComponent as ModeradorComponent } from './moderador/inicio/inicio.component';
 import { PerfilComponent as PerfilModeradorComp } from './moderador/perfil/perfil.component';
 import { TablaComponent } from './moderador/solicitudes/tabla/tabla.component';
+import { TiendaComponent } from './user/store/tienda/tienda.component';
+import { ProductoDetalleComponent } from './user/store/producto-detalle/producto-detalle.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -32,6 +34,8 @@ export const routes: Routes = [
   { path: 'tarjeta', component: CardComponent, canActivate: [UserGuard] },
   { path: 'mi-producto', component: ProductoComponent, canActivate: [UserGuard] },
   { path: 'crear-producto', component: CrearProductoComponent, canActivate: [UserGuard]},
+  { path: 'tienda', component: TiendaComponent, canActivate: [UserGuard]},
+  { path: 'producto/:id', component: ProductoDetalleComponent, canActivate: [UserGuard]},
 
   /* MODERADOR */
   { path: 'moderador', component: ModeradorComponent},

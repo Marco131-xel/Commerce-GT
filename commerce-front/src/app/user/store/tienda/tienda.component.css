@@ -1,0 +1,41 @@
+.text-gradient {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.producto-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 16px;
+}
+.producto-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border: none;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+.btn-gradient:hover {
+  filter: brightness(1.1);
+  transform: scale(1.03);
+}
+
+.btn-outline-success {
+  border: 2px solid #28a745;
+  color: #28a745;
+  transition: all 0.2s ease;
+}
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: white;
+  transform: scale(1.03);
+}

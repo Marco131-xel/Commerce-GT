@@ -1,6 +1,7 @@
 package com.main.commerce.services;
 
 import com.main.commerce.dtos.ProductoDto;
+import com.main.commerce.dtos.ProductoPublicoDto;
 import com.main.commerce.entities.Categoria;
 import com.main.commerce.entities.Producto;
 import com.main.commerce.entities.User;
@@ -133,10 +134,46 @@ public class ProductoService {
     }
 
     // listar todos los productos aprobados
-    public List<Producto> listarAprobados() {
-        return productoRepository.findAll()
-                .stream()
+    public List<ProductoDto> listarAprobados() {
+        return productoRepository.findAll().stream()
                 .filter(p -> "APROBADO".equals(p.getEstadoRevision()))
+                .map(p -> new ProductoDto(
+                        p.getIdProducto(),
+                        p.getNombre(),
+                        p.getDescripcion(),
+                        p.getPrecio(),
+                        p.getImagenUrl(),
+                        p.getStock(),
+                        p.getEstadoProducto(),
+                        p.getEstadoRevision(),
+                        p.getFechaPublicacion(),
+                        p.getCategoria().getNombre(),
+                        p.getUsuario().getNombre()
+                ))
+                .toList();
+    }
+
+    // listar todos los productos aprobados (excluyendo los del usuario autenticado)
+    public List<ProductoDto> listarAprobadosExcluyendoUsuario(String correo) {
+        User usuario = userRepository.findByCorreo(correo)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        return productoRepository.findAll().stream()
+                .filter(p -> "APROBADO".equals(p.getEstadoRevision()))
+                .filter(p -> !p.getUsuario().getIdUsuario().equals(usuario.getIdUsuario()))
+                .map(p -> new ProductoDto(
+                        p.getIdProducto(),
+                        p.getNombre(),
+                        p.getDescripcion(),
+                        p.getPrecio(),
+                        p.getImagenUrl(),
+                        p.getStock(),
+                        p.getEstadoProducto(),
+                        p.getEstadoRevision(),
+                        p.getFechaPublicacion(),
+                        p.getCategoria().getNombre(),
+                        p.getUsuario().getNombre()
+                ))
                 .toList();
     }
 

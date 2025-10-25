@@ -40,3 +40,24 @@ export interface MeProducto {
   categoriaNombre: string;
   usuarioNombre: string;
 }
+
+export interface ProductoPublico {
+  idProducto: number;
+  nombre: string;
+  descripcion?: string;
+  imagenUrl?: string;
+  precio: number;
+  stock: number;
+  estadoProducto: 'NUEVO' | 'USADO';
+  estadoRevision: 'APROBADO';
+  fechaPublicacion?: string;
+  categoriaNombre?: {
+    idCategoria: number;
+    nombre: string;
+  };
+  usuarioNombre?: {
+    idUsuario: number;
+    nombre: string;
+    correo: string;
+  };
+}
