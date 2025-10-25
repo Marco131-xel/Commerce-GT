@@ -1,77 +1,82 @@
-<app-header></app-header>
+<div class="app-container">
+  <app-header></app-header>
+
+  <main class="flex-grow-1">
 
     <div class="container mt-5">
-    <div class="card shadow p-4">
-        <h3 class="text-center mb-4">Registrar Nuevo Usuario</h3>
+        <div class="card shadow p-4">
+            <h3 class="text-center mb-4">Registrar Nuevo Empleado</h3>
 
-        <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
+            <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
 
-        <div class="row">
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Nombre:</label>
-            <input type="text" [(ngModel)]="user.nombre" name="nombre" class="form-control" required #nombre="ngModel">
-            <div class="text-danger" *ngIf="nombre.invalid && nombre.touched">El nombre es obligatorio.</div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                <label class="form-label">Nombre:</label>
+                <input type="text" [(ngModel)]="user.nombre" name="nombre" class="form-control" required #nombre="ngModel">
+                <div class="text-danger" *ngIf="nombre.invalid && nombre.touched">El nombre es obligatorio.</div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                <label class="form-label">Apellido:</label>
+                <input type="text" [(ngModel)]="user.apellido" name="apellido" class="form-control" required #apellido="ngModel">
+                <div class="text-danger" *ngIf="apellido.invalid && apellido.touched">El apellido es obligatorio.</div>
+                </div>
             </div>
 
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Apellido:</label>
-            <input type="text" [(ngModel)]="user.apellido" name="apellido" class="form-control" required #apellido="ngModel">
-            <div class="text-danger" *ngIf="apellido.invalid && apellido.touched">El apellido es obligatorio.</div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                <label class="form-label">Correo:</label>
+                <input type="email" [(ngModel)]="user.correo" name="correo" class="form-control" required #correo="ngModel">
+                <div class="text-danger" *ngIf="correo.invalid && correo.touched">
+                    <span *ngIf="correo.errors?.['required']">El correo es obligatorio.</span>
+                    <span *ngIf="correo.errors?.['email']">Ingrese un correo válido.</span>
+                </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                <label class="form-label">Contraseña:</label>
+                <input type="password" [(ngModel)]="user.contrasena" name="contrasena" class="form-control" required minlength="6" #contrasena="ngModel">
+                <div class="text-danger" *ngIf="contrasena.invalid && contrasena.touched">
+                    <span *ngIf="contrasena.errors?.['required']">La contraseña es obligatoria.</span>
+                    <span *ngIf="contrasena.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+                </div>
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                <label class="form-label">Teléfono:</label>
+                <input type="number" [(ngModel)]="user.telefono" name="telefono" class="form-control" required #telefono="ngModel">
+                <div class="text-danger" *ngIf="telefono.invalid && telefono.touched">El teléfono es obligatorio.</div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                <label class="form-label">Dirección:</label>
+                <input type="text" [(ngModel)]="user.direccion" name="direccion" class="form-control" required #direccion="ngModel">
+                <div class="text-danger" *ngIf="direccion.invalid && direccion.touched">La dirección es obligatoria.</div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Tipo de Usuario:</label>
+                <select class="form-select" [(ngModel)]="user.tipoUsuario" name="tipoUsuario" required>
+                <option *ngFor="let tipo of tiposUsuario" [value]="tipo">{{ tipo }}</option>
+                </select>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <button type="button" class="btn btn-secondary" (click)="regresar()">Cancelar</button>
+                <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid || cargando">
+                {{ cargando ? 'Registrando...' : 'Registrar Empleado' }}
+                </button>
+            </div>
+
+            <div class="text-danger mt-3 text-center" *ngIf="errorMsg">{{ errorMsg }}</div>
+            </form>
         </div>
-
-        <div class="row">
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Correo:</label>
-            <input type="email" [(ngModel)]="user.correo" name="correo" class="form-control" required #correo="ngModel">
-            <div class="text-danger" *ngIf="correo.invalid && correo.touched">
-                <span *ngIf="correo.errors?.['required']">El correo es obligatorio.</span>
-                <span *ngIf="correo.errors?.['email']">Ingrese un correo válido.</span>
-            </div>
-            </div>
-
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Contraseña:</label>
-            <input type="password" [(ngModel)]="user.contrasena" name="contrasena" class="form-control" required minlength="6" #contrasena="ngModel">
-            <div class="text-danger" *ngIf="contrasena.invalid && contrasena.touched">
-                <span *ngIf="contrasena.errors?.['required']">La contraseña es obligatoria.</span>
-                <span *ngIf="contrasena.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
-            </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Teléfono:</label>
-            <input type="number" [(ngModel)]="user.telefono" name="telefono" class="form-control" required #telefono="ngModel">
-            <div class="text-danger" *ngIf="telefono.invalid && telefono.touched">El teléfono es obligatorio.</div>
-            </div>
-
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Dirección:</label>
-            <input type="text" [(ngModel)]="user.direccion" name="direccion" class="form-control" required #direccion="ngModel">
-            <div class="text-danger" *ngIf="direccion.invalid && direccion.touched">La dirección es obligatoria.</div>
-            </div>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Tipo de Usuario:</label>
-            <select class="form-select" [(ngModel)]="user.tipoUsuario" name="tipoUsuario" required>
-            <option *ngFor="let tipo of tiposUsuario" [value]="tipo">{{ tipo }}</option>
-            </select>
-        </div>
-
-        <div class="d-flex justify-content-between align-items-center mt-4">
-            <button type="button" class="btn btn-secondary" (click)="regresar()">Cancelar</button>
-            <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid || cargando">
-            {{ cargando ? 'Registrando...' : 'Registrar Usuario' }}
-            </button>
-        </div>
-
-        <div class="text-danger mt-3 text-center" *ngIf="errorMsg">{{ errorMsg }}</div>
-        </form>
     </div>
-    </div>
 
+  </main>
 
-<app-footer></app-footer>
+  <app-footer></app-footer>
+</div>

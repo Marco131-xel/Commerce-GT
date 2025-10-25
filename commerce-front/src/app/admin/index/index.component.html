@@ -1,74 +1,167 @@
-<app-header></app-header>
+<div class="app-container">
+  <app-header></app-header>
 
-  <div class="container" style="padding-top: 90px; padding-bottom: 70px;">
-      <h2 class="mb-4 text-center text-dark">Bienvenido {{ nombreUsuario || 'Usuario' }} a Control Total de Ventas</h2>
-      
-      <div class="row g-4">
-          <!-- CRUD Empleados -->
-          <div class="col-md-4">
-              <div class="card text-center shadow-sm h-100 bg-dark text-white border-0">
-                  <div class="card-body">
-                      <div class="mb-3">
-                          <i class="bi bi-people-fill" style="font-size: 2rem; color: #6f42c1;"></i>
-                      </div>
-                      <h5 class="card-title">Empleados</h5>
-                      <p class="card-text text-white-50">Gestiona todos los empleados de la empresa.</p>
-                  </div>
-              </div>
-          </div>
-
-          <!-- CRUD Usuarios -->
-          <div class="col-md-4">
-              <div class="card text-center shadow-sm h-100 bg-dark text-white border-0">
-                  <div class="card-body">
-                      <div class="mb-3">
-                          <i class="bi bi-person-badge-fill" style="font-size: 2rem; color: #198754;"></i>
-                      </div>
-                      <h5 class="card-title">Usuarios</h5>
-                      <p class="card-text text-white-50">Administra los usuarios del sistema.</p>
-                  </div>
-              </div>
-          </div>
-
-          <!-- CRUD Productos -->
-          <div class="col-md-4">
-              <div class="card text-center shadow-sm h-100 bg-dark text-white border-0">
-                  <div class="card-body">
-                      <div class="mb-3">
-                          <i class="bi bi-box-seam" style="font-size: 2rem; color: #fd7e14;"></i>
-                      </div>
-                      <h5 class="card-title">Productos</h5>
-                      <p class="card-text text-white-50">Controla el inventario de productos disponibles.</p>
-                  </div>
-              </div>
-          </div>
-
-          <!-- CRUD Ventas -->
-          <div class="col-md-6">
-              <div class="card text-center shadow-sm h-100 bg-dark text-white border-0">
-                  <div class="card-body">
-                      <div class="mb-3">
-                          <i class="bi bi-cash-stack" style="font-size: 2rem; color: #0d6efd;"></i>
-                      </div>
-                      <h5 class="card-title">Ventas</h5>
-                      <p class="card-text text-white-50">Lleva el control completo de todas las ventas.</p>
-                  </div>
-              </div>
-          </div>
-
-          <!-- Reportes -->
-          <div class="col-md-6">
-              <div class="card text-center shadow-sm h-100 bg-dark text-white border-0">
-                  <div class="card-body">
-                      <div class="mb-3">
-                          <i class="bi bi-graph-up-arrow" style="font-size: 2rem; color: #dc3545;"></i>
-                      </div>
-                      <h5 class="card-title">Reportes</h5>
-                      <p class="card-text text-white-50">Visualiza informes y estadísticas del sistema.</p>
-                  </div>
-              </div>
-          </div>
+  <main class="flex-grow-1">
+    <div class="container py-5">
+      <!-- Introducción -->
+      <div class="p-4 p-md-5 rounded-4 shadow bg-morado text-white mb-5 text-center">
+        <h1 class="h3 h-md-2 fw-bold mb-2">Panel del Administrador</h1>
+        <p class="mb-0">
+          Bienvenido <strong>{{ nombreUsuario || 'Administrador' }}</strong>.
+          Desde este panel puedes gestionar usuarios del sistema y generar
+          reportes de rendimiento, ventas y actividad general.
+        </p>
       </div>
-  </div>
 
-<app-footer></app-footer>
+      <!-- Tarjetas -->
+      <div class="row g-4">
+        <!-- Gestión de Empleados -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover text-center shadow-sm h-100 bg-dark text-white border-0">
+            <div class="card-body d-flex flex-column align-items-center">
+              <div class="mb-3">
+                <i class="bi bi-person-gear" style="font-size: 2.3rem; color: black;"></i>
+              </div>
+              <h5 class="card-title">Gestión de Empleados</h5>
+              <p class="card-text text-white-50 mb-3">
+                Registra, edita o elimina usuarios con roles de moderador,
+                logística o administrador.
+              </p>
+              <a routerLink="/empleados" class="btn btn-outline-light btn-sm rounded-pill">
+                Ir a Empleados
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gestión de Usuarios -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover text-center shadow-sm h-100 bg-dark text-white border-0">
+            <div class="card-body d-flex flex-column align-items-center">
+              <div class="mb-3">
+                <i class="bi bi-person-lines-fill" style="font-size: 2.3rem; color: #198754;"></i>
+              </div>
+              <h5 class="card-title">Gestión de Usuarios</h5>
+              <p class="card-text text-white-50 mb-3">
+                Supervisa las cuentas activas de compradores y vendedores.
+              </p>
+              <a routerLink="/usuarios" class="btn btn-outline-light btn-sm rounded-pill">
+                Ver Usuarios
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gestión de Productos -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover text-center shadow-sm h-100 bg-dark text-white border-0">
+            <div class="card-body d-flex flex-column align-items-center">
+              <div class="mb-3">
+                <i class="bi bi-box-seam" style="font-size: 2.3rem; color: #fd7e14;"></i>
+              </div>
+              <h5 class="card-title">Gestión de Productos</h5>
+              <p class="card-text text-white-50 mb-3">
+                Monitorea el inventario global de productos en venta.
+              </p>
+              <a routerLink="/productos" class="btn btn-outline-light btn-sm rounded-pill">
+                Ver Productos
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reporte: Productos más vendidos -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-hover text-center shadow-sm h-100 bg-dark text-white border-0">
+            <div class="card-body d-flex flex-column align-items-center">
+              <div class="mb-3">
+                <i class="bi bi-graph-up-arrow" style="font-size: 2.3rem; color: #0d6efd;"></i>
+              </div>
+              <h5 class="card-title">Top 10 Productos</h5>
+              <p class="card-text text-white-50 mb-3">
+                Consulta los productos más vendidos en un rango de fechas.
+              </p>
+              <a routerLink="/reportes/productos" class="btn btn-outline-light btn-sm rounded-pill">
+                Generar Reporte
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reporte: Clientes con más compras -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-hover text-center shadow-sm h-100 bg-dark text-white border-0">
+            <div class="card-body d-flex flex-column align-items-center">
+              <div class="mb-3">
+                <i class="bi bi-trophy" style="font-size: 2.3rem; color: #ffc107;"></i>
+              </div>
+              <h5 class="card-title">Top 5 Clientes Compradores</h5>
+              <p class="card-text text-white-50 mb-3">
+                Visualiza los clientes que más ganancias han generado.
+              </p>
+              <a routerLink="/reportes/clientes-compras" class="btn btn-outline-light btn-sm rounded-pill">
+                Ver Reporte
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reporte: Clientes más vendedores -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-hover text-center shadow-sm h-100 bg-dark text-white border-0">
+            <div class="card-body d-flex flex-column align-items-center">
+              <div class="mb-3">
+                <i class="bi bi-award" style="font-size: 2.3rem; color: #20c997;"></i>
+              </div>
+              <h5 class="card-title">Top 5 Clientes Vendedores</h5>
+              <p class="card-text text-white-50 mb-3">
+                Conoce quiénes son los usuarios más exitosos vendiendo.
+              </p>
+              <a routerLink="/reportes/clientes-ventas" class="btn btn-outline-light btn-sm rounded-pill">
+                Ver Reporte
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Historial de Sanciones -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-hover text-center shadow-sm h-100 bg-dark text-white border-0">
+            <div class="card-body d-flex flex-column align-items-center">
+              <div class="mb-3">
+                <i class="bi bi-shield-exclamation" style="font-size: 2.3rem; color: #dc3545;"></i>
+              </div>
+              <h5 class="card-title">Historial de Sanciones</h5>
+              <p class="card-text text-white-50 mb-3">
+                Revisa los reportes de sanciones aplicadas a usuarios.
+              </p>
+              <a routerLink="/reportes/sanciones" class="btn btn-outline-light btn-sm rounded-pill">
+                Ver Historial
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Historial de Notificaciones -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-hover text-center shadow-sm h-100 bg-dark text-white border-0">
+            <div class="card-body d-flex flex-column align-items-center">
+              <div class="mb-3">
+                <i class="bi bi-bell" style="font-size: 2.3rem; color: #6610f2;"></i>
+              </div>
+              <h5 class="card-title">Historial de Notificaciones</h5>
+              <p class="card-text text-white-50 mb-3">
+                Consulta todas las alertas enviadas por el sistema.
+              </p>
+              <a routerLink="/reportes/notificaciones" class="btn btn-outline-light btn-sm rounded-pill">
+                Ver Notificaciones
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>
