@@ -35,15 +35,9 @@ export class CartComponent implements OnInit {
   }
 
   cargarCarritos(): void {
-    this.carritoService.listarCarritoActivo(this.idUsuario).subscribe({
+    this.carritoService.listarCarritosPorUsuario(this.idUsuario).subscribe({
       next: (data) => {
-        const carritosArray = Array.isArray(data)
-          ? data
-          : data
-          ? [data]
-          : [];
-
-        this.carritos = carritosArray
+        this.carritos = (data || [])
           .filter((c: any) => c != null)
           .map((c: any) => ({
             ...c,

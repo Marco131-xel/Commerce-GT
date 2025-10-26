@@ -39,24 +39,23 @@ public class CarritoController {
         return ResponseEntity.ok(carritoService.obtenerPorUsuario(idUsuario));
     }
 
-    // agregar producto al carrito
+    // agregar productos al carrito
     @PostMapping("/agregar")
     public ResponseEntity<?> agregarProductoAlCarrito(@RequestParam Long idUsuario,
                                                       @RequestParam Long idProducto,
                                                       @RequestParam(defaultValue = "1") int cantidad) {
         try {
-            Carrito carrito = carritoService.obtenerCarritoActivoPorUsuario(idUsuario)
-                    .orElseGet(() -> {
-                        Carrito nuevo = new Carrito();
-                        User usuario = new User();
-                        usuario.setIdUsuario(idUsuario);
-                        nuevo.setUsuario(usuario);
-                        nuevo.setEstado("ACTIVO");
-                        return carritoService.guardar(nuevo);
-                    });
+            Carrito nuevo = new Carrito();
+            User usuario = new User();
+            usuario.setIdUsuario(idUsuario);
+            nuevo.setUsuario(usuario);
+            nuevo.setEstado("ACTIVO");
+
+            Carrito carrito = carritoService.guardar(nuevo);
 
             carritoService.agregarProducto(carrito, idProducto, cantidad);
-            return ResponseEntity.ok("Producto agregado al carrito");
+
+            return ResponseEntity.ok("Producto agregado a carrito");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
