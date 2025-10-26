@@ -81,6 +81,11 @@ export class PerfilComponent implements OnInit {
     });
   }
 
+  // regresar al inicio
+  inicio() {
+    this.router.navigate(['/user']);
+  }
+
   //Cerrar sesión
   onLogout() {
     this.authService.logout();

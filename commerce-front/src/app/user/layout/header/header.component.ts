@@ -31,8 +31,10 @@ export class HeaderComponent {
   mi_producto() {
     this.router.navigate(['/mi-producto']);
   }
-
   tienda() {
     this.router.navigate(['/tienda']);
+  }
+  carrito() {
+    this.router.navigate(['/carrito']);
   }
 }
