@@ -37,4 +37,7 @@ export class HeaderComponent {
   carrito() {
     this.router.navigate(['/carrito']);
   }
+  pedido() {
+    this.router.navigate(['/pedido']);
+  }
 }

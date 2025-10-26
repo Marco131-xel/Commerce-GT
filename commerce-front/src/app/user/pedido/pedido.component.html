@@ -1,0 +1,86 @@
+<div class="app-container">
+  <app-header></app-header>
+
+  <main class="flex-grow-1">
+    <div class="container my-5">
+      <h2 class="text-center mb-4 fw-bold text-gradient">Mis Pedidos</h2>
+
+      <div *ngIf="cargando" class="text-center py-5">
+        <div class="spinner-border text-primary"></div>
+      </div>
+
+        <div *ngIf="!cargando && pedidos.length === 0" class="text-center mt-5">
+        <i class="fas fa-box-open fa-5x text-secondary mb-3"></i>
+        <h4 class="fw-bold text-muted mb-3">No tienes pedidos aún</h4>
+        <p class="text-muted mb-4">Parece que aún no has realizado ninguna compra.</p>
+        </div>
+
+      <div *ngFor="let pedido of pedidos" class="card mb-4 shadow border-0 rounded-4 overflow-hidden pedido-card">
+        <!-- ENCABEZADO -->
+        <div class="card-header text-white rounded-top-4 d-flex justify-content-between align-items-center"
+             style="background: linear-gradient(135deg,#6a11cb,#2575fc);">
+          <span class="fw-semibold">Pedido #{{ pedido.idPedido }}</span>
+          <span>{{ pedido.fechaPedido | date:'medium' }}</span>
+        </div>
+
+        <!-- CUERPO -->
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+            <p class="mb-1">
+              <strong>Entrega estimada:</strong>
+              <span class="text-muted">{{ pedido.fechaEntregaEstimada | date:'mediumDate' }}</span>
+            </p>
+
+            <!-- BADGE DE ESTADO -->
+            <span class="badge estado-badge"
+                  [ngClass]="{
+                    'bg-warning text-dark': pedido.estado === 'EN_CURSO',
+                    'bg-success': pedido.estado === 'ENTREGADO',
+                    'bg-danger': pedido.estado === 'CANCELADO'
+                  }">
+              {{ pedido.estado }}
+            </span>
+          </div>
+
+          <!-- TABLA DE DETALLES -->
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-info">
+                <tr>
+                  <th>Imagen</th>
+                  <th>Producto</th>
+                  <th class="text-center">Cantidad</th>
+                  <th class="text-center">Precio</th>
+                  <th class="text-center">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of pedido.detalles">
+                  <td class="text-center">
+                    <img [src]="d.producto.imagenUrl"
+                         alt="{{ d.producto.nombre }}"
+                         class="img-producto">
+                  </td>
+                  <td>{{ d.producto.nombre }}</td>
+                  <td class="text-center">{{ d.cantidad }}</td>
+                  <td class="text-center">Q {{ d.precioUnitario }}</td>
+                  <td class="text-center fw-semibold">Q {{ d.subtotal }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <hr />
+
+          <div class="text-end mt-3">
+            <h5 class="mb-0">Total:
+              <span class="text-success fw-bold">Q {{ pedido.total }}</span>
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>

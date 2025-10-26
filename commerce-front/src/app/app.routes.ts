@@ -19,6 +19,7 @@ import { TablaComponent } from './moderador/solicitudes/tabla/tabla.component';
 import { TiendaComponent } from './user/store/tienda/tienda.component';
 import { ProductoDetalleComponent } from './user/store/producto-detalle/producto-detalle.component';
 import { CartComponent } from './user/store/cart/cart.component';
+import { PedidoComponent } from './user/pedido/pedido.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -40,6 +41,7 @@ export const routes: Routes = [
   { path: 'tienda', component: TiendaComponent, canActivate: [UserGuard]},
   { path: 'producto/:id', component: ProductoDetalleComponent, canActivate: [UserGuard]},
   { path: 'carrito', component: CartComponent, canActivate: [UserGuard]},
+  { path: 'pedido', component: PedidoComponent, canActivate: [UserGuard]},
 
   /* MODERADOR */
   { path: 'moderador', component: ModeradorComponent},

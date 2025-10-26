@@ -48,7 +48,7 @@ public class PedidoService {
         Pedido pedido = new Pedido();
         pedido.setUsuario(carrito.getUsuario());
         pedido.setTarjeta(tarjeta);
-        pedido.setFechaEntregaEstimada(LocalDate.now().plusDays(3));
+        pedido.setFechaEntregaEstimada(LocalDate.now().plusDays(5));
         pedido.setEstado("EN_CURSO");
 
         BigDecimal total = BigDecimal.ZERO;
