@@ -84,28 +84,22 @@ export class ProductoComponent implements OnInit {
     }
   }
 
+
+
   // editar un producto
-  editar(): void {
-    if (!this.productoSeleccionado) return;
-    this.router.navigate(['/editar-producto', this.productoSeleccionado.idProducto]);
+  editar(producto: Producto): void {
+    this.router.navigate(['/editar-producto', producto.idProducto]);
   }
-
+  
   // eliminar producto
-  eliminar(): void {
-    if (!this.productoSeleccionado) return;
-
-    const confirmar = confirm(`¿Seguro que deseas eliminar el producto "${this.productoSeleccionado.nombre}"?`);
+  eliminar(producto: Producto): void {
+    const confirmar = confirm(`¿Seguro que deseas eliminar el producto "${producto.nombre}"?`);
     if (!confirmar) return;
-
-    this.productoService.eliminarProducto(this.productoSeleccionado.idProducto).subscribe({
+  
+    this.productoService.eliminarProducto(producto.idProducto).subscribe({
       next: () => {
         alert('Producto eliminado correctamente');
         this.cargarProductos();
-        const modalElement = document.getElementById('detalleModal');
-        if (modalElement) {
-          const modalInstance = bootstrap.Modal.getInstance(modalElement);
-          modalInstance?.hide();
-        }
       },
       error: (err) => {
         console.error('Error al eliminar producto:', err);
@@ -113,4 +107,5 @@ export class ProductoComponent implements OnInit {
       }
     });
   }
+  
 }

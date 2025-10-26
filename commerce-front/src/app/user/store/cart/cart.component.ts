@@ -5,6 +5,8 @@ import { FooterComponent } from '../../layout/footer/footer.component';
 import { CarritoService } from '../../../services/carrito.service';
 import { ProductoPublico } from '../../models/producto.model';
 import { ProductoService } from '../../../services/producto.service';
+import { AuthService } from '../../../services/auth.service';
+import { PedidoService } from '../../../services/pedido.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,7 +25,9 @@ export class CartComponent implements OnInit {
   constructor(
     private carritoService: CarritoService,
     private router: Router,
-    private productoService: ProductoService
+    private productoService: ProductoService,
+    private authService: AuthService,
+    private pedidoService: PedidoService
   ) {}
 
   ngOnInit(): void {
@@ -64,7 +68,37 @@ export class CartComponent implements OnInit {
   }
 
   procederPago(carrito: any): void {
-    this.router.navigate(['/checkout', carrito.id]);
+    if (!this.idUsuario) {
+      console.log("NO HAY USUARIO");
+      return;
+    }
+
+    this.authService.getTarjetas().subscribe({
+      next: (tarjetas) => {
+        if (!tarjetas || tarjetas.length === 0) {
+          alert('No tienes tarjeta registrada');
+          this.router.navigate(['/perfil']);
+          return;
+        }
+
+        if (confirm('¿Deseas confirmar el pago de este carrito?')) {
+          this.pedidoService.crearDesdeCarrito(this.idUsuario).subscribe({
+            next: (pedido) => {
+              alert('Pedido realizado');
+              this.cargarCarritos();
+            },
+            error: (err) => {
+              alert('Error al crear el pedido: ' + err.error);
+              console.error(err);
+            }
+          });
+        }
+      },
+      error: (err) => {
+        console.error('Error al verificar tarjeta: ', err);
+        alert('Error al verificar tarjeta');
+      }
+    });
   }
 
 }

@@ -44,7 +44,7 @@ export class ProductoService {
     }
     
     // actualizar producto
-    actualizarProducto(id: number, producto: Producto): Observable<Producto> {
+    actualizarProducto(id: number, producto: ProductoRequest): Observable<Producto> {
     return this.http.put<Producto>(`${this.apiUrl}/${id}`, producto, { headers: this.getAuthHeaders() });
     }
     

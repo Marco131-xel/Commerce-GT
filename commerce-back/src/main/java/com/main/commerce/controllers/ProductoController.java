@@ -63,10 +63,10 @@ public class ProductoController {
 
     // eliminar producto
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarProducto(Authentication auth, @PathVariable Long id) {
+    public ResponseEntity<Void> eliminarProducto(Authentication auth, @PathVariable Long id) {
         String correo = auth.getName();
         productoService.eliminarProducto(correo, id);
-        return ResponseEntity.ok("Producto eliminado correctamente");
+        return ResponseEntity.noContent().build();
     }
 
     // listar todos los productos aprobados

@@ -82,11 +82,11 @@
                                 <button class="btn btn-outline-primary btn-sm me-2" (click)="verDetalles(producto)">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="btn btn-outline-success btn-sm me-2" (click)="editar()">
-                                    <i class="fas fa-edit"></i>
+                                <button class="btn btn-outline-success btn-sm me-2" (click)="editar(producto)">
+                                <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-outline-danger btn-sm" (click)="eliminar()">
-                                    <i class="fas fa-trash"></i>
+                                <button class="btn btn-outline-danger btn-sm" (click)="eliminar(producto)">
+                                <i class="fas fa-trash"></i>
                                 </button>
                                 </td>
                             </tr>
@@ -157,17 +157,6 @@
                             </ul>
                         </div>
                         </div>
-                    </div>
-
-                    <div class="modal-footer d-flex justify-content-between">
-                            <td>
-                            <button class="btn btn-outline-success btn-sm me-2" (click)="editar()">
-                            <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn btn-outline-danger btn-sm" (click)="eliminar()">
-                            <i class="fas fa-trash"></i>
-                            </button>
-                            </td>
                     </div>
 
                 </div>

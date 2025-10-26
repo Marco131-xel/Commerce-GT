@@ -12,6 +12,7 @@ import { UsuariosComponent } from './admin/usuarios/usuarios.component';
 import { EditComponent } from './admin/edit/edit.component';
 import { ProductoComponent } from './user/store/producto/producto.component';
 import { CrearProductoComponent } from './user/store/crear-producto/crear-producto.component';
+import { EditarProductoComponent } from './user/store/editar-producto/editar-producto.component';
 import { InicioComponent as ModeradorComponent } from './moderador/inicio/inicio.component';
 import { PerfilComponent as PerfilModeradorComp } from './moderador/perfil/perfil.component';
 import { TablaComponent } from './moderador/solicitudes/tabla/tabla.component';
@@ -35,6 +36,7 @@ export const routes: Routes = [
   { path: 'tarjeta', component: CardComponent, canActivate: [UserGuard] },
   { path: 'mi-producto', component: ProductoComponent, canActivate: [UserGuard] },
   { path: 'crear-producto', component: CrearProductoComponent, canActivate: [UserGuard]},
+  { path: 'editar-producto/:id', component: EditarProductoComponent, canActivate: [UserGuard]},
   { path: 'tienda', component: TiendaComponent, canActivate: [UserGuard]},
   { path: 'producto/:id', component: ProductoDetalleComponent, canActivate: [UserGuard]},
   { path: 'carrito', component: CartComponent, canActivate: [UserGuard]},
