@@ -76,6 +76,9 @@
                     <button class="btn btn-gradient" (click)="procederPago(carrito)">
                       <i class="fas fa-credit-card me-1"></i> Proceder al Pago
                     </button>
+                    <button class="btn btn-outline-danger btn-sm" (click)="eliminar(carrito)">
+                      <i class="fas fa-trash"></i>
+                    </button>
                     <h5 class="mb-0">
                       Total: <span class="text-success fw-bold">
                         Q{{ calcularTotal(carrito) | number: '1.2-2' }}

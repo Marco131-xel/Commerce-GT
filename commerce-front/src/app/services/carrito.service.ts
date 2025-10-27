@@ -46,5 +46,10 @@ export class CarritoService {
     });
   }
 
+  eliminarCarrito(idCarrito: number): Observable<void> {
+    return this.http.delete<void>(`${this.carroUrl}/${idCarrito}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
     
 }

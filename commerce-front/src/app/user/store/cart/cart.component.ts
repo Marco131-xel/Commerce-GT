@@ -63,6 +63,21 @@ export class CartComponent implements OnInit {
     );
   }
 
+  eliminar(carrito: any): void {
+    if (confirm('¿Deseas eliminar este carrito?')) {
+      this.carritoService.eliminarCarrito(carrito.idCarrito).subscribe({
+        next: () => {
+          alert('Carrito eliminado');
+          this.cargarCarritos();
+        },
+        error: (err) => {
+          console.error('Error al eliminar carrito:', err);
+          alert('No se pudo eliminar el carrito');
+        }
+      });
+    }
+  }
+
   comprar(): void {
     this.router.navigate(['/tienda']);
   }
