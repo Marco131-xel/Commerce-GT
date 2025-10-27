@@ -34,8 +34,16 @@ export class LoginComponent {
         localStorage.setItem('token', Response.token);
         localStorage.setItem('nombre', Response.nombre);
         localStorage.setItem('tipoUsuario', Response.tipoUsuario);
-        localStorage.setItem('id_usuario', Response.id_usuario)
-
+        localStorage.setItem('id_usuario', Response.id_usuario);
+        localStorage.setItem('estado', Response.estado);
+        
+        // por el si el usuario COMUN esta suspendido
+        if (Response.tipoUsuario === 'COMUN' && Response.estado === 'SUSPENDIDO') {
+          localStorage.clear();
+          this.router.navigate(['/suspendido']);
+          return;
+        }
+  
         const role = this.authService.getUserRole();
         console.log('Rol de Usuario: ', role);
 
@@ -45,8 +53,8 @@ export class LoginComponent {
           this.router.navigate(['/user'])
         } else if (role == 'MODERADOR'){
           this.router.navigate(['/moderador']);
-        } else {
-          alert('AUN NO HAY VISTA XD')
+        } else if (role == 'LOGISTICA'){
+          this.router.navigate(['/logistica']);
         }
       },
       error: (error) => {

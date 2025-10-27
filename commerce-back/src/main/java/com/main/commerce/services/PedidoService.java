@@ -99,4 +99,18 @@ public class PedidoService {
     public void eliminar(Long idPedido) {
         pedidoRepository.deleteById(idPedido);
     }
+
+    // obtener todos los pedidos para logistica
+    public List<Pedido> listarTodos() {
+        return pedidoRepository.findAll();
+    }
+
+    // marcar pedido entregado
+    public Pedido marcarComoEntregado(Long idPedido) {
+        Pedido pedido = pedidoRepository.findById(idPedido)
+                .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
+        pedido.setEstado("ENTREGADO");
+        return pedidoRepository.save(pedido);
+    }
+
 }

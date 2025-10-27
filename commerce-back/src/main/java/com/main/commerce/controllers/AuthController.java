@@ -40,7 +40,8 @@ public class AuthController {
                     "token", jwt,
                     "nombre", user.getNombre(),
                     "tipoUsuario", user.getTipoUsuario(),
-                    "id_usuario", user.getIdUsuario()
+                    "id_usuario", user.getIdUsuario(),
+                    "estado", user.getEstado()
             ));
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(

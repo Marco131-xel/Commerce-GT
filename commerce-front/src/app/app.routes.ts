@@ -1,6 +1,10 @@
 import { Routes } from '@angular/router';
+// guards
 import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
+import { ModeradorGuard } from './guards/moderador.guard';
+import { LogisticaGuard } from './guards/logistica.guard';
+// vistas
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { IndexComponent as AdminIndexComponent } from './admin/index/index.component';
@@ -20,8 +24,13 @@ import { TiendaComponent } from './user/store/tienda/tienda.component';
 import { ProductoDetalleComponent } from './user/store/producto-detalle/producto-detalle.component';
 import { CartComponent } from './user/store/cart/cart.component';
 import { PedidoComponent } from './user/pedido/pedido.component';
+import { InicioComponent as LogisticaComponent } from './logistica/inicio/inicio.component';
+import { PedidosComponent as PedidosLogisComponent } from './logistica/pedidos/pedidos.component';
+import { PerfilComponent as PerfilLogisticaComp } from './logistica/perfil/perfil.component';
 
 export const routes: Routes = [
+
+  /* LOGIN Y REGISTRAR */
   { path: '', component: LoginComponent },
   { path: 'registrar', component: RegisterComponent },
 
@@ -44,9 +53,14 @@ export const routes: Routes = [
   { path: 'pedido', component: PedidoComponent, canActivate: [UserGuard]},
 
   /* MODERADOR */
-  { path: 'moderador', component: ModeradorComponent},
-  { path: 'perfilMod', component: PerfilModeradorComp},
-  { path: 'solicitudProducto', component: TablaComponent},
+  { path: 'moderador', component: ModeradorComponent, canActivate: [ModeradorGuard]},
+  { path: 'perfilMod', component: PerfilModeradorComp, canActivate: [ModeradorGuard]},
+  { path: 'solicitudProducto', component: TablaComponent, canActivate: [ModeradorGuard]},
+
+  /* LOGISTICA */
+  { path: 'logistica', component: LogisticaComponent, canActivate: [LogisticaGuard]},
+  { path: 'pedido-logi', component: PedidosLogisComponent, canActivate: [LogisticaGuard]},
+  { path: 'perfil-logi', component: PerfilLogisticaComp, canActivate: [LogisticaGuard]},
 
   { path: '**', redirectTo: '' }
 ];

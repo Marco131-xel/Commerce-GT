@@ -1,0 +1,60 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fc;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding-top: 80px;
+}
+
+/* Color personalizado para la cabecera */
+.intro-bg {
+  background: linear-gradient(90deg, #0ba360, #3cba92);
+}
+
+/* Efecto al pasar el mouse por las tarjetas */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Íconos redondeados con fondo */
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+/* Colores base */
+.bg-morado {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+
+/* Responsividad */
+@media (max-width: 576px) {
+  .card-body {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .icon-badge {
+    margin-bottom: 8px;
+  }
+}

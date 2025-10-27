@@ -32,7 +32,19 @@ export class AdminGuard implements CanActivate {
       }
 
       if (decoded.role !== 'ADMINISTRADOR') {
-        this.router.navigate(['/user']);
+        switch (decoded.role) {
+          case 'COMUN':
+            this.router.navigate(['/user']);
+            break;
+          case 'MODERADOR':
+            this.router.navigate(['/moderador']);
+            break;
+          case 'LOGISTICA':
+            this.router.navigate(['/logistica']);
+            break;
+          default:
+            this.router.navigate(['/']);
+        }
         return false;
       }
 

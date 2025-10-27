@@ -1,0 +1,111 @@
+<div class="app-container">
+  <app-header></app-header>
+
+  <main class="flex-grow-1">
+    <br />
+    <div class="container py-4">
+      <!-- Introducción -->
+      <div
+        class="p-4 p-md-5 rounded-4 shadow text-white mb-4 intro-bg"
+        style="background: linear-gradient(90deg, #0ba360, #3cba92);"
+      >
+        <h1 class="h3 h-md-2 fw-bold mb-2">Panel de Logística</h1>
+        <p class="mb-0">
+          Bienvenido al panel de <strong>logística</strong>. Aquí puedes gestionar el
+          <strong>seguimiento de pedidos</strong>, actualizar las fechas de entrega y confirmar las
+          <strong>entregas completadas</strong> para mantener el control del proceso de envío.
+        </p>
+      </div>
+
+      <!-- Tarjetas -->
+      <div class="row g-3 g-md-4">
+        <!-- Pedidos en Curso -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover h-100 rounded-4 shadow-sm">
+            <div class="card-body d-flex gap-3 align-items-center">
+              <span class="icon-badge bg-success">
+                <i class="bi bi-truck fs-4 text-white"></i>
+              </span>
+              <div>
+                <h5 class="card-title mb-1">Pedidos en Curso</h5>
+                <p class="card-text text-muted mb-0">
+                  Visualiza todos los pedidos que están en proceso de entrega.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modificar Fechas -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover h-100 rounded-4 shadow-sm">
+            <div class="card-body d-flex gap-3 align-items-center">
+              <span class="icon-badge bg-info">
+                <i class="bi bi-calendar-event fs-4 text-white"></i>
+              </span>
+              <div>
+                <h5 class="card-title mb-1">Modificar Fechas</h5>
+                <p class="card-text text-muted mb-0">
+                  Ajusta las fechas de entrega de los pedidos según corresponda.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Entregas Completadas -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover h-100 rounded-4 shadow-sm">
+            <div class="card-body d-flex gap-3 align-items-center">
+              <span class="icon-badge bg-primary">
+                <i class="bi bi-check-circle fs-4 text-white"></i>
+              </span>
+              <div>
+                <h5 class="card-title mb-1">Entregas Completadas</h5>
+                <p class="card-text text-muted mb-0">
+                  Confirma los pedidos que ya fueron entregados al cliente.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Historial de Envíos -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover h-100 rounded-4 shadow-sm">
+            <div class="card-body d-flex gap-3 align-items-center">
+              <span class="icon-badge bg-warning">
+                <i class="bi bi-clock-history fs-4 text-white"></i>
+              </span>
+              <div>
+                <h5 class="card-title mb-1">Historial de Envíos</h5>
+                <p class="card-text text-muted mb-0">
+                  Consulta los registros de pedidos entregados anteriormente.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reportes Logísticos -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card card-hover h-100 rounded-4 shadow-sm">
+            <div class="card-body d-flex gap-3 align-items-center">
+              <span class="icon-badge bg-morado">
+                <i class="bi bi-bar-chart fs-4 text-white"></i>
+              </span>
+              <div>
+                <h5 class="card-title mb-1">Reportes Logísticos</h5>
+                <p class="card-text text-muted mb-0">
+                  Revisa estadísticas de desempeño y tiempos de entrega.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>

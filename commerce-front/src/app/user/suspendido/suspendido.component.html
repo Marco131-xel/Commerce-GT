@@ -1,0 +1,32 @@
+<div class="app-container">
+  <app-headsus></app-headsus>
+
+  <main class="flex-grow-1">
+    <br />
+    <div class="container py-5">
+      <div class="p-4 p-md-5 rounded-4 shadow bg-danger text-white text-center">
+        <i class="bi bi-exclamation-triangle-fill fs-1 mb-3"></i>
+        <h1 class="fw-bold mb-3">Cuenta Suspendida</h1>
+        <p class="lead mb-4">
+          Tu cuenta ha sido <strong>temporalmente suspendida</strong> por incumplir nuestras normas
+          o políticas de uso.  
+          Si crees que esto es un error, por favor contacta con el soporte de <strong>Commerce GT</strong>.
+        </p>
+        <a class="btn btn-light fw-bold rounded-pill px-4 py-2 shadow-sm" (click)="cerrar()">
+          <i class="bi bi-box-arrow-left me-2"></i>Volver al inicio de sesión
+        </a>
+      </div>
+
+      <div class="mt-5 text-center">
+        <img
+          src="assets/img/suspendido.svg"
+          alt="Cuenta suspendida"
+          class="img-fluid"
+          style="max-width: 350px"
+        />
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>

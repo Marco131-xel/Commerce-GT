@@ -1,0 +1,65 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fc;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding-top: 80px;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #0ba360, #3cba92);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.table-header {
+  background: linear-gradient(135deg, #0ba360, #3cba92);
+}
+
+.estado-badge {
+  font-size: 0.85rem;
+  padding: 6px 10px;
+  border-radius: 12px;
+}
+
+.table {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0ba360, #3cba92);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #0ba360, #3cba92);
+  border: none;
+  transition: 0.2s;
+}
+
+.btn-success:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.modal-header-bg {
+  background: linear-gradient(135deg, #0ba360, #3cba92);
+}
+
+.modal-content {
+  border-radius: 12px;
+}
+
+.table-success {
+  background-color: #e8f9f1 !important;
+}
+

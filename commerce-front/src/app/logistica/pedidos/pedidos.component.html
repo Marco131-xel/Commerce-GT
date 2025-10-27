@@ -1,0 +1,137 @@
+<div class="app-container">
+  <app-header></app-header>
+
+  <main class="flex-grow-1">
+    <div class="container my-5">
+      <h2 class="text-center mb-4 fw-bold text-gradient">Gestión de Pedidos</h2>
+
+      <!-- CARGANDO -->
+      <div *ngIf="cargando" class="text-center py-5">
+        <div class="spinner-border text-success"></div>
+        <p class="text-muted mt-3">Cargando pedidos...</p>
+      </div>
+
+      <!-- SIN PEDIDOS -->
+      <div *ngIf="!cargando && pedidos.length === 0" class="text-center mt-5">
+        <i class="fas fa-box-open fa-4x text-secondary mb-3"></i>
+        <h5 class="text-muted">No hay pedidos registrados</h5>
+      </div>
+
+      <!-- TABLA DE PEDIDOS -->
+      <div *ngIf="pedidos.length > 0" class="table-responsive shadow-sm">
+        <table class="table table-striped align-middle border text-center">
+          <thead class="text-white" style="background: linear-gradient(135deg, #0ba360, #3cba92);">
+            <tr>
+              <th>ID</th>
+              <th>Cliente</th>
+              <th>Entrega Estimada</th>
+              <th>Estado</th>
+              <th>Productos</th>
+              <th>Total</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pedido of pedidos">
+              <td>{{ pedido.idPedido }}</td>
+              <td>{{ pedido.usuario?.nombre }}</td>
+              <td>{{ pedido.fechaEntregaEstimada | date: 'mediumDate' }}</td>
+
+              <td>
+                <span class="badge estado-badge"
+                      [ngClass]="{
+                        'bg-warning text-dark': pedido.estado === 'EN_CURSO',
+                        'bg-success': pedido.estado === 'ENTREGADO'
+                      }">
+                  {{ pedido.estado }}
+                </span>
+              </td>
+
+              <td>
+                <ul class="list-unstyled mb-0 text-start">
+                  <li *ngFor="let d of pedido.detalles">
+                    {{ d.producto.nombre }} (x{{ d.cantidad }})
+                  </li>
+                </ul>
+              </td>
+
+              <td class="fw-semibold">Q {{ pedido.total }}</td>
+
+              <td>
+                <div class="d-flex justify-content-center gap-2">
+                  <button class="btn btn-outline-primary btn-sm"
+                          (click)="verDetalles(pedido)">
+                    Ver
+                  </button>
+
+                  <button *ngIf="pedido.estado !== 'ENTREGADO'"
+                          class="btn btn-success btn-sm"
+                          (click)="marcarEntregado(pedido.idPedido)">
+                    Entregado
+                  </button>
+
+                  <span *ngIf="pedido.estado === 'ENTREGADO'" class="text-success fw-semibold">
+                    ✓
+                  </span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- MODAL DE DETALLES -->
+      <div class="modal fade" id="detalleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header text-white modal-header-bg">
+              <h5 class="modal-title fw-bold">Detalles del Pedido #{{ pedidoSeleccionado?.idPedido }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+              <div *ngIf="pedidoSeleccionado">
+                <p><strong>Cliente:</strong> {{ pedidoSeleccionado.usuario?.nombre}}</p>
+                <p><strong>Fecha Pedido:</strong> {{ pedidoSeleccionado.fechaPedido | date:'medium' }}</p>
+                <p><strong>Entrega Estimada:</strong> {{ pedidoSeleccionado.fechaEntregaEstimada | date:'mediumDate' }}</p>
+
+                <hr>
+
+                <table class="table table-bordered align-middle text-center">
+                  <thead class="table-success">
+                    <tr>
+                      <th>Producto</th>
+                      <th>Categoría</th>
+                      <th>Cantidad</th>
+                      <th>Precio</th>
+                      <th>Subtotal</th>
+                      <th>Imagen</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let d of pedidoSeleccionado.detalles">
+                      <td>{{ d.producto.nombre }}</td>
+                      <td>{{ d.producto.categoria.nombre }}</td>
+                      <td>{{ d.cantidad }}</td>
+                      <td>Q {{ d.precioUnitario }}</td>
+                      <td>Q {{ d.subtotal }}</td>
+                      <td>
+                        <img [src]="d.producto.imagenUrl"
+                             alt="Producto"
+                             class="img-fluid rounded"
+                             width="60">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>

@@ -11,7 +11,7 @@ interface JwtPayload {
 @Injectable({
   providedIn: 'root'
 })
-export class UserGuard implements CanActivate {
+export class ModeradorGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(): boolean {
@@ -31,20 +31,11 @@ export class UserGuard implements CanActivate {
         return false;
       }
 
-      if (decoded.role !== 'COMUN') {
-        switch (decoded.role) {
-          case 'ADMINISTRADOR':
-            this.router.navigate(['/admin']);
-            break;
-          case 'MODERADOR':
-            this.router.navigate(['/moderador']);
-            break;
-          case 'LOGISTICA':
-            this.router.navigate(['/logistica']);
-            break;
-          default:
-            this.router.navigate(['/']);
-        }
+      if (decoded.role !== 'MODERADOR') {
+        if (decoded.role === 'ADMINISTRADOR') this.router.navigate(['/admin']);
+        else if (decoded.role === 'COMUN') this.router.navigate(['/user']);
+        else if (decoded.role === 'LOGISTICA') this.router.navigate(['/logistica']);
+        else this.router.navigate(['/']);
         return false;
       }
 

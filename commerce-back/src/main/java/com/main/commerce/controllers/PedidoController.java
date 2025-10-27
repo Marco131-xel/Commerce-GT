@@ -52,4 +52,22 @@ public class PedidoController {
         pedidoService.eliminar(idPedido);
         return ResponseEntity.noContent().build();
     }
+
+    // listar todos los pedidos para logística
+    @GetMapping("/todos")
+    public ResponseEntity<List<Pedido>> listarTodos() {
+        return ResponseEntity.ok(pedidoService.listarTodos());
+    }
+
+    // marcar pedido como entregado
+    @PutMapping("/{idPedido}/entregado")
+    public ResponseEntity<Pedido> marcarComoEntregado(@PathVariable Long idPedido) {
+        try {
+            Pedido actualizado = pedidoService.marcarComoEntregado(idPedido);
+            return ResponseEntity.ok(actualizado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 }
