@@ -17,11 +17,16 @@ import { Router } from '@angular/router';
 export class UsuariosComponent implements OnInit {
   usuarios: User[] = [];
   cargando = true;
+  idModerador?: number;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.cargarUsuarios();
+    const idModerador = localStorage.getItem('id_usuario');
+    if (idModerador) {
+      this.idModerador = Number(idModerador);
+    }
   }
 
   cargarUsuarios() {
@@ -38,8 +43,16 @@ export class UsuariosComponent implements OnInit {
   }
 
   suspender(user: User) {
+    const motivo = prompt(`¿Cuál es el motivo para suspender a ${user.nombre}?`);
+    if (!motivo) return;
+  
+    if (!this.idModerador) {
+      console.log("No esta el id del moderador")
+      return;
+    }
+  
     if (confirm(`¿Seguro que deseas suspender a ${user.nombre}?`)) {
-      this.authService.suspenderUsuario(user.idUsuario!).subscribe({
+      this.authService.suspenderUsuario(user.idUsuario!, this.idModerador, motivo).subscribe({
         next: (res) => {
           alert(res.message);
           this.cargarUsuarios();

@@ -2,6 +2,8 @@ package com.main.commerce.controllers;
 
 import com.main.commerce.dtos.UpdateUserDto;
 import com.main.commerce.entities.User;
+import com.main.commerce.entities.Sancion;
+import com.main.commerce.repositories.SancionRepository;
 import com.main.commerce.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,10 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+
+    @Autowired
+    private SancionRepository sancionRepository;
+
 
     @Autowired
     public UserController(UserService userService) {
@@ -102,11 +108,16 @@ public class UserController {
     public ResponseEntity<?> activarUsuario(@PathVariable Long id) {
         User user = userService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
         user.setEstado("ACTIVO");
         userService.save(user);
+        Sancion sancionActiva = sancionRepository.findTopByUsuario_IdUsuarioAndEstadoOrderByFechaSancionDesc(id, "ACTIVA");
 
-        return ResponseEntity.ok(Map.of("message", "Usuario activado correctamente"));
+        if (sancionActiva != null) {
+            sancionActiva.setEstado("LEVANTADA");
+            sancionRepository.save(sancionActiva);
+        }
+
+        return ResponseEntity.ok(Map.of("message", "Usuario activado y sancion levantada"));
     }
 
 }

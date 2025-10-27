@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface ReporteRepository extends CrudRepository<User, Long> {
 
-    // 🔹 Top 10 productos más vendidos
+    // top 10 productos mas vendidos
     @Query(value = """
         SELECT 
             p.id_producto AS idProducto,
@@ -29,7 +29,7 @@ public interface ReporteRepository extends CrudRepository<User, Long> {
             @Param("fin") String fin
     );
 
-    // 🔹 Top 5 clientes que más ganancias por compras han generado
+    // top 5 clientes que mas ganancias por compras han generado
     @Query(value = """
         SELECT 
             u.id_usuario AS idUsuario,
@@ -48,7 +48,7 @@ public interface ReporteRepository extends CrudRepository<User, Long> {
             @Param("fin") String fin
     );
 
-    // 🔹 Top 5 clientes que más productos han vendido
+    // top 5 clientes que mas productos han vendido
     @Query(value = """
         SELECT 
             u.id_usuario AS idUsuario,
@@ -70,7 +70,7 @@ public interface ReporteRepository extends CrudRepository<User, Long> {
             @Param("fin") String fin
     );
 
-    // 🔹 Top 10 clientes que más pedidos han realizado
+    // top 10 clientes que mas pedidos han realizado
     @Query(value = """
         SELECT 
             u.id_usuario AS idUsuario,
@@ -89,7 +89,7 @@ public interface ReporteRepository extends CrudRepository<User, Long> {
             @Param("fin") String fin
     );
 
-    // 🔹 Top 10 clientes con más productos en venta
+    // top 10 clientes con mas productos en venta
     @Query(value = """
         SELECT 
             u.id_usuario AS idUsuario,
@@ -104,4 +104,21 @@ public interface ReporteRepository extends CrudRepository<User, Long> {
         LIMIT 10
     """, nativeQuery = true)
     List<Map<String, Object>> top10ClientesMasProductosEnVenta();
+
+    // historial de sanciones
+    @Query(value = """
+    SELECT 
+        s.id_sancion AS idSancion,
+        CONCAT(u.nombre, ' ', u.apellido) AS usuarioSancionado,
+        CONCAT(m.nombre, ' ', m.apellido) AS moderador,
+        s.motivo AS motivo,
+        s.fecha_sancion AS fechaSancion,
+        s.estado AS estado
+    FROM sanciones s
+    JOIN usuarios u ON s.id_usuario = u.id_usuario
+    JOIN usuarios m ON s.id_moderador = m.id_usuario
+    ORDER BY s.fecha_sancion DESC
+""", nativeQuery = true)
+    List<Map<String, Object>> historialSanciones();
+
 }

@@ -21,6 +21,7 @@ export class ReportComponent implements OnInit {
   clientesMasVendidos: any[] = [];
   clientesMasPedidos: any[] = [];
   clientesMasProductos: any[] = [];
+  historialSanciones: any[] = [];
 
   constructor(private reportesService: ReportesService) {}
 
@@ -43,5 +44,8 @@ export class ReportComponent implements OnInit {
 
     this.reportesService.getTopClientesMasProductosEnVenta()
       .subscribe(data => this.clientesMasProductos = data);
+      
+    this.reportesService.getHistorialSanciones()
+      .subscribe(data => this.historialSanciones = data);
   }
 }

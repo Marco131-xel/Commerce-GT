@@ -19,6 +19,7 @@ export class AuthService {
   private apiUrl = 'http://localhost:8080/auth';
   private userUrl = 'http://localhost:8080/user';
   private cardUrl = 'http://localhost:8080/tarjeta';
+  private sanUrl = 'http://localhost:8080/sanciones';
 
   constructor(private http: HttpClient) { }
   
@@ -76,8 +77,11 @@ export class AuthService {
   /* FUNCIONES PARA MODERADOR */
 
   // suspender usuario
-  suspenderUsuario(id: number): Observable<any> {
-    return this.http.put(`${this.userUrl}/suspender/${id}`, {});
+  suspenderUsuario(idUsuario: number, idModerador: number, motivo: string): Observable<any> {
+    return this.http.put(
+      `${this.sanUrl}/suspender/${idUsuario}?idModerador=${idModerador}&motivo=${motivo}`, 
+      {}
+    );
   }
   
   // activar usuario

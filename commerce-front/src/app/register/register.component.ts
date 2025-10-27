@@ -32,6 +32,13 @@ export class RegisterComponent {
       });
       return;
     }
+
+    localStorage.removeItem('token'); 
+    localStorage.removeItem('tipoUsuario'); 
+    localStorage.removeItem('nombre'); 
+    localStorage.removeItem('id_usuario'); 
+    localStorage.removeItem('estado');
+
     this.authService.register(this.user).subscribe({
       next: (response) => {
         console.log('Registro exitoso', response);

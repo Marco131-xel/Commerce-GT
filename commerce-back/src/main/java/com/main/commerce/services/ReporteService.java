@@ -33,4 +33,9 @@ public class ReporteService {
     public List<Map<String, Object>> top10ClientesMasProductosEnVenta() {
         return reporteRepository.top10ClientesMasProductosEnVenta();
     }
+
+    public List<Map<String, Object>> historialSanciones() {
+        return reporteRepository.historialSanciones();
+    }
+
 }

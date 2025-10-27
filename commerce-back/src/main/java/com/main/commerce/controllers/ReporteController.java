@@ -53,4 +53,10 @@ public class ReporteController {
     public List<Map<String, Object>> top10ClientesMasProductosEnVenta() {
         return reporteService.top10ClientesMasProductosEnVenta();
     }
+
+    @GetMapping("/historial-sanciones")
+    public List<Map<String, Object>> historialSanciones() {
+        return reporteService.historialSanciones();
+    }
+
 }

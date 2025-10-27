@@ -111,34 +111,36 @@ CREATE TABLE logistica (
     observacion TEXT
 );
 
--- Insertar usuarios
+-- Insertar usuarios con correos @gmail.com y contraseñas bcrypt
+
 INSERT INTO usuarios (nombre, apellido, correo, contrasena, telefono, direccion, tipo_usuario, estado) VALUES 
 -- 10 usuarios comunes
-('Juan', 'Pérez', 'juan.perez@email.com', '123456', '555-0101', 'Calle Falsa 123, Ciudad A', 'COMUN', 'ACTIVO'),
-('María', 'Gómez', 'maria.gomez@email.com', '123456', '555-0102', 'Av. Siempre Viva 456, Ciudad B', 'COMUN', 'ACTIVO'),
-('Carlos', 'López', 'carlos.lopez@email.com', '123456', '555-0103', 'Calle Real 789, Ciudad C', 'COMUN', 'ACTIVO'),
-('Ana', 'Martínez', 'ana.martinez@email.com', '123456', '555-0104', 'Av. Central 321, Ciudad D', 'COMUN', 'ACTIVO'),
-('Luis', 'Rodríguez', 'luis.rodriguez@email.com', '123456', '555-0105', 'Calle Norte 654, Ciudad E', 'COMUN', 'ACTIVO'),
-('Sofia', 'Hernández', 'sofia.hernandez@email.com', '123456', '555-0106', 'Av. Sur 987, Ciudad F', 'COMUN', 'ACTIVO'),
-('Diego', 'García', 'diego.garcia@email.com', '123456', '555-0107', 'Calle Este 147, Ciudad G', 'COMUN', 'ACTIVO'),
-('Laura', 'Díaz', 'laura.diaz@email.com', '123456', '555-0108', 'Av. Oeste 258, Ciudad H', 'COMUN', 'ACTIVO'),
-('Pedro', 'Sánchez', 'pedro.sanchez@email.com', '123456', '555-0109', 'Calle Principal 369, Ciudad I', 'COMUN', 'ACTIVO'),
-('Elena', 'Ramírez', 'elena.ramirez@email.com', '123456', '555-0110', 'Av. Secundaria 741, Ciudad J', 'COMUN', 'ACTIVO'),
+('Juan', 'Pérez', 'juan.perez@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0101', 'Calle Falsa 123, Ciudad A', 'COMUN', 'ACTIVO'),
+('María', 'Gómez', 'maria.gomez@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0102', 'Av. Siempre Viva 456, Ciudad B', 'COMUN', 'ACTIVO'),
+('Carlos', 'López', 'carlos.lopez@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0103', 'Calle Real 789, Ciudad C', 'COMUN', 'ACTIVO'),
+('Ana', 'Martínez', 'ana.martinez@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0104', 'Av. Central 321, Ciudad D', 'COMUN', 'ACTIVO'),
+('Luis', 'Rodríguez', 'luis.rodriguez@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0105', 'Calle Norte 654, Ciudad E', 'COMUN', 'ACTIVO'),
+('Sofia', 'Hernández', 'sofia.hernandez@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0106', 'Av. Sur 987, Ciudad F', 'COMUN', 'ACTIVO'),
+('Diego', 'García', 'diego.garcia@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0107', 'Calle Este 147, Ciudad G', 'COMUN', 'ACTIVO'),
+('Laura', 'Díaz', 'laura.diaz@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0108', 'Av. Oeste 258, Ciudad H', 'COMUN', 'ACTIVO'),
+('Pedro', 'Sánchez', 'pedro.sanchez@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0109', 'Calle Principal 369, Ciudad I', 'COMUN', 'ACTIVO'),
+('Elena', 'Ramírez', 'elena.ramirez@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0110', 'Av. Secundaria 741, Ciudad J', 'COMUN', 'ACTIVO'),
 
 -- 5 moderadores
-('Miguel', 'Torres', 'miguel.torres@email.com', '123456', '555-0201', 'Av. Moderación 111, Ciudad K', 'MODERADOR', 'ACTIVO'),
-('Carmen', 'Vargas', 'carmen.vargas@email.com', '123456', '555-0202', 'Calle Revisión 222, Ciudad L', 'MODERADOR', 'ACTIVO'),
-('Roberto', 'Castro', 'roberto.castro@email.com', '123456', '555-0203', 'Av. Aprobación 333, Ciudad M', 'MODERADOR', 'ACTIVO'),
-('Isabel', 'Rojas', 'isabel.rojas@email.com', '123456', '555-0204', 'Calle Control 444, Ciudad N', 'MODERADOR', 'ACTIVO'),
-('Fernando', 'Mendoza', 'fernando.mendoza@email.com', '123456', '555-0205', 'Av. Supervisión 555, Ciudad O', 'MODERADOR', 'ACTIVO'),
+('Miguel', 'Torres', 'miguel.torres@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0201', 'Av. Moderación 111, Ciudad K', 'MODERADOR', 'ACTIVO'),
+('Carmen', 'Vargas', 'carmen.vargas@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0202', 'Calle Revisión 222, Ciudad L', 'MODERADOR', 'ACTIVO'),
+('Roberto', 'Castro', 'roberto.castro@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0203', 'Av. Aprobación 333, Ciudad M', 'MODERADOR', 'ACTIVO'),
+('Isabel', 'Rojas', 'isabel.rojas@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0204', 'Calle Control 444, Ciudad N', 'MODERADOR', 'ACTIVO'),
+('Fernando', 'Mendoza', 'fernando.mendoza@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0205', 'Av. Supervisión 555, Ciudad O', 'MODERADOR', 'ACTIVO'),
 
 -- 3 usuarios de logística
-('Andrea', 'Silva', 'andrea.silva@email.com', '123456', '555-0301', 'Calle Distribución 666, Ciudad P', 'LOGISTICA', 'ACTIVO'),
-('Javier', 'Ortega', 'javier.ortega@email.com', '123456', '555-0302', 'Av. Transporte 777, Ciudad Q', 'LOGISTICA', 'ACTIVO'),
-('Patricia', 'Navarro', 'patricia.navarro@email.com', '123456', '555-0303', 'Calle Entrega 888, Ciudad R', 'LOGISTICA', 'ACTIVO'),
+('Andrea', 'Silva', 'andrea.silva@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0301', 'Calle Distribución 666, Ciudad P', 'LOGISTICA', 'ACTIVO'),
+('Javier', 'Ortega', 'javier.ortega@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0302', 'Av. Transporte 777, Ciudad Q', 'LOGISTICA', 'ACTIVO'),
+('Patricia', 'Navarro', 'patricia.navarro@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0303', 'Calle Entrega 888, Ciudad R', 'LOGISTICA', 'ACTIVO'),
 
 -- 1 administrador
-('Admin', 'Principal', 'admin@email.com', '123456', '555-0001', 'Av. Administración 999, Ciudad S', 'ADMINISTRADOR', 'ACTIVO');
+('Admin', 'Principal', 'admin@gmail.com', '$2a$10$1N7CNyM8evwqM5aG6P2CeOlGVH1rKuVrM0xMM62URKqPK4NRyE1Hu', '555-0001', 'Av. Administración 999, Ciudad S', 'ADMINISTRADOR', 'ACTIVO');
+
 
 -- Insertar tarjetas de crédito para los 10 usuarios comunes
 INSERT INTO tarjetas (id_usuario, numero_tarjeta, nombre_titular, fecha_expiracion, cvv) VALUES 
@@ -258,7 +260,7 @@ INSERT INTO productos (id_usuario, id_categoria, nombre, descripcion, imagen_url
 (6, 7, 'Difusor de aromas', 'Difusor ultrasónico, luces LED', 'https://images.unsplash.com/photo-1604514813560-5d7b4b6c5f5a?w=500', 30.00, 8, 'NUEVO', 'APROBADO'),
 (6, 8, 'Yoga mat', 'Mat de yoga extra grueso', 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500', 25.00, 6, 'NUEVO', 'APROBADO'),
 (6, 9, 'Kindle Paperwhite', 'E-reader Amazon, 8GB', 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500', 90.00, 4, 'USADO', 'APROBADO'),
-(6, 10, 'Bolso de mano', 'Bolso de cuero genuino, color marrón', 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500', 85.00, 3, 'USADO', 'APROBADO')
+(6, 10, 'Bolso de mano', 'Bolso de cuero genuino, color marrón', 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500', 85.00, 3, 'USADO', 'APROBADO'),
 
 -- Productos para Diego García (Usuario 7)
 (7, 1, 'PC Gamer', 'Computadora gaming, Ryzen 5, GTX 1660', 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=500', 850.00, 1, 'USADO', 'APROBADO'),

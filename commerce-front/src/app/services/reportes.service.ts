@@ -29,4 +29,9 @@ export class ReportesService {
   getTopClientesMasProductosEnVenta(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/clientes-mas-productos`);
   }
+
+  getHistorialSanciones(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/historial-sanciones`);
+  }
+
 }

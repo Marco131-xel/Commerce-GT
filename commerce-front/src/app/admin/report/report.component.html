@@ -102,6 +102,32 @@
         </tbody>
       </table>
 
+      <!-- historial de sancinoes -->
+      <h3 class="text-center mb-4">Historial de Sanciones</h3>
+
+      <table class="table table-bordered table-hover shadow-sm">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Usuario Sancionado</th>
+            <th>Moderador</th>
+            <th>Motivo</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of historialSanciones; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ s.usuariosancionado }}</td>
+            <td>{{ s.moderador }}</td>
+            <td>{{ s.motivo }}</td>
+            <td>{{ s.fechasancion | date:'mediumDate' }}</td>
+            <td>{{ s.estado }}</td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
   </main>
   <app-footer></app-footer>
