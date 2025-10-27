@@ -1,0 +1,35 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding: 3%;
+}
+
+h3 {
+  font-weight: 700;
+  color: #333;
+}
+
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table thead {
+  background: linear-gradient(90deg, #5e17eb, #3b82f6);
+  color: white;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(94, 23, 235, 0.08);
+}

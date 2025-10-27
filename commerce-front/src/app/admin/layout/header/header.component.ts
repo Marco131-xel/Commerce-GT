@@ -36,6 +36,11 @@ export class HeaderComponent {
     this.router.navigate(['/comun-user']);
   }
 
+  // boton para reportes
+  reporte() {
+    this.router.navigate(['/reporte']);
+  }
+
   // boton cerrar sesion
   onLogout() {
     this.authService.logout();

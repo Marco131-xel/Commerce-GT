@@ -16,6 +16,7 @@ import { EmpleadosComponent } from './admin/empleados/empleados.component';
 import { ComunComponent } from './admin/comun/comun.component';
 import { UsuariosComponent } from './admin/usuarios/usuarios.component';
 import { EditComponent } from './admin/edit/edit.component';
+import { ReportComponent } from './admin/report/report.component';
 import { ProductoComponent } from './user/store/producto/producto.component';
 import { CrearProductoComponent } from './user/store/crear-producto/crear-producto.component';
 import { EditarProductoComponent } from './user/store/editar-producto/editar-producto.component';
@@ -43,6 +44,7 @@ export const routes: Routes = [
   { path: 'comun-user', component: ComunComponent, canActivate: [AdminGuard] },
   { path: 'crearUser', component: UsuariosComponent, canActivate: [AdminGuard] },
   { path: 'editarUser/:id', component: EditComponent, canActivate: [AdminGuard] },
+  { path: 'reporte', component: ReportComponent, canActivate: [AdminGuard] },
 
   /* USER */
   { path: 'user', component: UserIndexComponent, canActivate: [UserGuard] },

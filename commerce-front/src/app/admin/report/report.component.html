@@ -1,0 +1,108 @@
+<div class="app-container">
+  <app-header></app-header>
+  <main class="flex-grow-1">
+    <div class="container mt-4">
+
+      <!-- top 10 productos mas vendidos -->
+      <h3 class="text-center mb-3">Top 10 Productos Más Vendidos</h3>
+      <table class="table table-bordered table-hover shadow-sm mb-5">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Producto</th>
+            <th>Total Vendidos</th>
+            <th>Ganancia Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of productosMasVendidos; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.totalvendidos }}</td>
+            <td>Q{{ p.totalganancia | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- top 5 clientes que mas ganancias generan -->
+      <h3 class="text-center mb-3">Top 5 Clientes que Más Ganancias Generan</h3>
+      <table class="table table-bordered table-hover shadow-sm mb-5">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Cliente</th>
+            <th>Total Gastado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of clientesMasGanancias; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ c.nombre }} {{ c.apellido }}</td>
+            <td>Q{{ c.totalgastado | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- top 5 clientes que mas productos han vendido -->
+      <h3 class="text-center mb-3">Top 5 Clientes que Más Productos Han Vendido</h3>
+      <table class="table table-bordered table-hover shadow-sm mb-5">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Cliente</th>
+            <th>Productos Vendidos</th>
+            <th>Ganancia Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let v of clientesMasVendidos; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ v.nombre }} {{ v.apellido }}</td>
+            <td>{{ v.totalproductosvendidos }}</td>
+            <td>Q{{ v.totalganancias | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- top 10 clientes que mas pedidos han realizado -->
+      <h3 class="text-center mb-3">Top 10 Clientes que Más Pedidos Han Realizado</h3>
+      <table class="table table-bordered table-hover shadow-sm mb-5">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Cliente</th>
+            <th>Total Pedidos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of clientesMasPedidos; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ c.nombre }} {{ c.apellido }}</td>
+            <td>{{ c.totalpedidos }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- top 10 clientes con ms productos en venta -->
+      <h3 class="text-center mb-3">Top 10 Clientes con Más Productos en Venta</h3>
+      <table class="table table-bordered table-hover shadow-sm mb-5">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Cliente</th>
+            <th>Total Productos en Venta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of clientesMasProductos; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ c.nombre }} {{ c.apellido }}</td>
+            <td>{{ c.totalproductos }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </main>
+  <app-footer></app-footer>
+</div>
