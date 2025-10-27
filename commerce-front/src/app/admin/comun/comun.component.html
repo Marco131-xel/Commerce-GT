@@ -1,0 +1,49 @@
+<div class="app-container">
+  <app-header></app-header>
+  <main class="flex-grow-1">
+    <div class="container mt-4">
+      <h2 class="mb-4">Lista de Usuarios</h2>
+      <div *ngIf="cargando" class="text-center text-muted mt-3">
+        Cargando usuarios...
+      </div>
+
+      <div *ngIf="!cargando && usuarios.length === 0" class="text-center text-muted mt-3">
+        No hay usuarios registrados
+      </div>
+
+      <div class="table-responsive" *ngIf="usuarios.length > 0">
+        <table class="table table-bordered table-striped align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Correo</th>
+              <th>Teléfono</th>
+              <th>Dirección</th>
+              <th>Tipo Usuario</th>
+              <th>Fecha Registro</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of usuarios">
+              <td>{{ user.idUsuario }}</td>
+              <td>{{ user.nombre }}</td>
+              <td>{{ user.apellido }}</td>
+              <td>{{ user.correo }}</td>
+              <td>{{ user.telefono }}</td>
+              <td>{{ user.direccion }}</td>
+              <td>{{ user.tipoUsuario }}</td>
+              <td>{{ user.fechaRegistro | date:'short' }}</td>
+              <td>
+                <button class="btn btn-danger btn-sm" (click)="eliminar(user)">🗑️ Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  <app-footer></app-footer>
+</div>

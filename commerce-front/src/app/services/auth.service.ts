@@ -54,6 +54,16 @@ export class AuthService {
     return this.http.get<User[]>(`${this.userUrl}/all`);
   }
 
+  // mostrar solo usuarios comunes
+  getAllComunUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.userUrl}/comunes`);
+  }
+
+  // mostrar los empledos
+  getAllEmployees(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.userUrl}/empleados`);
+  }  
+
   // editar los usuarios
   updateUser(id: number, updatedUser: any): Observable<any> {
     return this.http.put(`${this.userUrl}/update/${id}`, updatedUser);
@@ -62,7 +72,19 @@ export class AuthService {
   deleteUser(id: number): Observable<any> {
     return this.http.delete(`${this.userUrl}/delete/${id}`);
   }
+
+  /* FUNCIONES PARA MODERADOR */
+
+  // suspender usuario
+  suspenderUsuario(id: number): Observable<any> {
+    return this.http.put(`${this.userUrl}/suspender/${id}`, {});
+  }
   
+  // activar usuario
+  activarUsuario(id: number): Observable<any> {
+    return this.http.put(`${this.userUrl}/activar/${id}`, {});
+  }
+
   /* FUNCIONES PARA EL USUARIO COMUN */
 
   // obtener el perfil del usuario

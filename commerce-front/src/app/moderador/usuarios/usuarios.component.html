@@ -1,0 +1,79 @@
+<div class="app-container">
+  <app-header></app-header>
+
+  <main class="flex-grow-1">
+    <div class="container mt-4">
+      <h2 class="mb-4 text-center text-dark">Lista de Usuarios</h2>
+
+      <div *ngIf="cargando" class="text-center text-muted mt-3">
+        Cargando usuarios...
+      </div>
+
+      <div *ngIf="!cargando && usuarios.length === 0" class="text-center text-muted mt-3">
+        No hay usuarios registrados
+      </div>
+
+      <div class="table-responsive" *ngIf="usuarios.length > 0">
+        <table class="table table-bordered table-striped align-middle shadow-sm">
+          <thead class="table-info text-center">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Correo</th>
+              <th>Teléfono</th>
+              <th>Estado</th>
+              <th>Tipo Usuario</th>
+              <th>Fecha Registro</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let user of usuarios" class="text-center">
+              <td>{{ user.idUsuario }}</td>
+              <td>{{ user.nombre }}</td>
+              <td>{{ user.apellido }}</td>
+              <td>{{ user.correo }}</td>
+              <td>{{ user.telefono }}</td>
+
+              <!-- Estado con color -->
+              <td>
+                <span 
+                  [ngClass]="{
+                    'estado-activo': user.estado === 'ACTIVO',
+                    'estado-suspendido': user.estado === 'SUSPENDIDO'
+                  }"
+                  class="fw-bold px-2 py-1 rounded-pill">
+                  {{ user.estado }}
+                </span>
+              </td>
+
+              <td>{{ user.tipoUsuario }}</td>
+              <td>{{ user.fechaRegistro | date:'short' }}</td>
+
+              <!-- Botones -->
+              <td>
+                <button
+                  *ngIf="user.estado === 'ACTIVO'"
+                  class="btn-suspender btn btn-sm me-2"
+                  (click)="suspender(user)">
+                  <i class="bi bi-slash-circle"></i> Suspender
+                </button>
+
+                <button
+                  *ngIf="user.estado === 'SUSPENDIDO'"
+                  class="btn-activar btn btn-sm me-2"
+                  (click)="activar(user)">
+                  <i class="bi bi-check-circle"></i> Activar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>

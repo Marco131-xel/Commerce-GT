@@ -31,6 +31,11 @@ export class HeaderComponent {
     this.router.navigate(['/empleados']);
   }
 
+  // boton usuario comun
+  comunes() {
+    this.router.navigate(['/comun-user']);
+  }
+
   // boton cerrar sesion
   onLogout() {
     this.authService.logout();

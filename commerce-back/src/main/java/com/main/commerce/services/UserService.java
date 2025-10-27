@@ -77,4 +77,19 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
+    public List<User> findAllComun() {
+        return userRepository.findAll()
+                .stream()
+                .filter(user -> "COMUN".equalsIgnoreCase(user.getTipoUsuario()))
+                .toList();
+    }
+
+    public List<User> findAllExceptComun() {
+        return userRepository.findAll()
+                .stream()
+                .filter(user -> !"COMUN".equalsIgnoreCase(user.getTipoUsuario()))
+                .toList();
+    }
+
+
 }

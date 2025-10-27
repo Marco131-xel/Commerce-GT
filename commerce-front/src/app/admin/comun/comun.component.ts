@@ -8,13 +8,13 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-empleados',
+  selector: 'app-comun',
   standalone: true,
   imports: [HeaderComponent, FooterComponent, CommonModule, HttpClientModule],
-  templateUrl: './empleados.component.html',
-  styleUrl: './empleados.component.css'
+  templateUrl: './comun.component.html',
+  styleUrl: './comun.component.css'
 })
-export class EmpleadosComponent implements OnInit {
+export class ComunComponent implements OnInit{
 
   usuarios: User[] = [];
   cargando = true;
@@ -26,7 +26,7 @@ export class EmpleadosComponent implements OnInit {
   }
 
   cargarUsuarios() {
-    this.authService.getAllEmployees().subscribe({
+    this.authService.getAllComunUsers().subscribe({
       next: (data) => {
         this.usuarios = data;
         this.cargando = false;
@@ -36,14 +36,6 @@ export class EmpleadosComponent implements OnInit {
         this.cargando = false;
       }
     });
-  }
-
-  crear() {
-    this.router.navigate(['crearUser']);
-  }
-
-  editar(user: User) {
-    this.router.navigate(['editarUser', user.idUsuario]);
   }
 
   eliminar(user: User){

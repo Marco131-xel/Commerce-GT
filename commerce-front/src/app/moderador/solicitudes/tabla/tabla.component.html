@@ -1,110 +1,116 @@
-<app-header></app-header>
+<div class="app-container">
+  <app-header></app-header>
 
-<div class="container mt-4">
-  <h2 class="mb-4">Productos Pendientes de Revisión</h2>
+  <main class="flex-grow-1">
 
-  <div *ngIf="cargando" class="text-center text-muted mt-3">
-    Cargando productos...
-  </div>
+    <div class="container mt-4">
+      <h2 class="mb-4 text-center text-dark">Productos Pendientes de Revisión</h2>
 
-  <div *ngIf="!cargando && productos.length === 0" class="text-center text-muted mt-3">
-    No hay productos pendientes
-  </div>
-
-  <div class="table-responsive" *ngIf="productos.length > 0">
-    <table class="table table-hover table-bordered align-middle shadow-sm">
-      <thead class="table-dark text-center">
-        <tr>
-          <th>ID</th>
-          <th>Imagen</th>
-          <th>Usuario</th>
-          <th>Categoría</th>
-          <th>Nombre</th>
-          <th>Revisión</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody class="text-center">
-        <tr *ngFor="let producto of productos">
-          <td>{{ producto.idProducto }}</td>
-          <td>
-            <img
-              [src]="producto.imagenUrl || 'assets/img/placeholder.png'"
-              alt="Imagen del producto"
-              class="img-thumbnail"
-              width="70"
-              height="70"
-              style="object-fit: cover;"
-            />
-          </td>
-          <td>{{ producto.usuarioNombre }}</td>
-          <td>{{ producto.categoriaNombre }}</td>
-          <td>{{ producto.nombre }}</td>
-          <td>
-            <span [ngClass]="{
-              'badge bg-secondary': producto.estadoRevision === 'PENDIENTE',
-              'badge bg-success': producto.estadoRevision === 'APROBADO',
-              'badge bg-danger': producto.estadoRevision === 'RECHAZADO'
-            }">
-              {{ producto.estadoRevision }}
-            </span>
-          </td>
-          <td>
-            <button class="btn btn-primary btn-sm me-2" (click)="verDetalles(producto)">
-              Ver
-            </button>
-            <button class="btn btn-success btn-sm me-2" (click)="aprobar(producto)">
-              Aprobar
-            </button>
-            <button class="btn btn-danger btn-sm" (click)="rechazar(producto)">
-              Rechazar
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- Modal de Detalles -->
-<div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title" id="detalleModalLabel">{{ productoSeleccionado?.nombre }}</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      <div *ngIf="cargando" class="text-center text-muted mt-3">
+        Cargando productos...
       </div>
-      <div class="modal-body" *ngIf="productoSeleccionado">
-        <div class="row">
-          <!-- Imagen del producto -->
-          <div class="col-md-5 text-center">
-            <img
-              [src]="productoSeleccionado.imagenUrl || 'assets/img/placeholder.png'"
-              alt="Imagen del producto"
-              class="img-fluid rounded shadow-sm mb-3"
-              style="max-height: 300px; object-fit: cover;"
-            />
-          </div>
 
-          <!-- Detalles del producto -->
-          <div class="col-md-7">
-            <p><strong>Descripción:</strong> {{ productoSeleccionado.descripcion }}</p>
-            <p><strong>Precio:</strong> {{ productoSeleccionado.precio | currency:'Q' }}</p>
-            <p><strong>Stock:</strong> {{ productoSeleccionado.stock }}</p>
-            <p><strong>Estado:</strong> {{ productoSeleccionado.estadoProducto }}</p>
-            <p><strong>Categoría:</strong> {{ productoSeleccionado.categoriaNombre }}</p>
-            <p><strong>Publicado por:</strong> {{ productoSeleccionado.usuarioNombre }}</p>
-            <p><strong>Fecha de publicación:</strong> {{ productoSeleccionado.fechaPublicacion | date:'short' }}</p>
+      <div *ngIf="!cargando && productos.length === 0" class="text-center text-muted mt-3">
+        No hay productos pendientes
+      </div>
+
+      <div class="table-responsive" *ngIf="productos.length > 0">
+        <table class="table table-hover table-bordered align-middle shadow-sm">
+          <thead class="table-info text-center">
+            <tr>
+              <th>ID</th>
+              <th>Imagen</th>
+              <th>Usuario</th>
+              <th>Categoría</th>
+              <th>Nombre</th>
+              <th>Revisión</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let producto of productos">
+              <td>{{ producto.idProducto }}</td>
+              <td>
+                <img
+                  [src]="producto.imagenUrl || 'assets/img/placeholder.png'"
+                  alt="Imagen del producto"
+                  class="img-thumbnail"
+                  width="70"
+                  height="70"
+                  style="object-fit: cover;"
+                />
+              </td>
+              <td>{{ producto.usuarioNombre }}</td>
+              <td>{{ producto.categoriaNombre }}</td>
+              <td>{{ producto.nombre }}</td>
+              <td>
+                <span [ngClass]="{
+                  'badge bg-secondary': producto.estadoRevision === 'PENDIENTE',
+                  'badge bg-success': producto.estadoRevision === 'APROBADO',
+                  'badge bg-danger': producto.estadoRevision === 'RECHAZADO'
+                }">
+                  {{ producto.estadoRevision }}
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-primary btn-sm me-2" (click)="verDetalles(producto)">
+                  Ver
+                </button>
+                <button class="btn btn-success btn-sm me-2" (click)="aprobar(producto)">
+                  Aprobar
+                </button>
+                <button class="btn btn-danger btn-sm" (click)="rechazar(producto)">
+                  Rechazar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal de Detalles -->
+    <div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-dark text-white">
+            <h5 class="modal-title" id="detalleModalLabel">{{ productoSeleccionado?.nombre }}</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body" *ngIf="productoSeleccionado">
+            <div class="row">
+              <!-- Imagen del producto -->
+              <div class="col-md-5 text-center">
+                <img
+                  [src]="productoSeleccionado.imagenUrl || 'assets/img/placeholder.png'"
+                  alt="Imagen del producto"
+                  class="img-fluid rounded shadow-sm mb-3"
+                  style="max-height: 300px; object-fit: cover;"
+                />
+              </div>
+
+              <!-- Detalles del producto -->
+              <div class="col-md-7">
+                <p><strong>Descripción:</strong> {{ productoSeleccionado.descripcion }}</p>
+                <p><strong>Precio:</strong> {{ productoSeleccionado.precio | currency:'Q' }}</p>
+                <p><strong>Stock:</strong> {{ productoSeleccionado.stock }}</p>
+                <p><strong>Estado:</strong> {{ productoSeleccionado.estadoProducto }}</p>
+                <p><strong>Categoría:</strong> {{ productoSeleccionado.categoriaNombre }}</p>
+                <p><strong>Publicado por:</strong> {{ productoSeleccionado.usuarioNombre }}</p>
+                <p><strong>Fecha de publicación:</strong> {{ productoSeleccionado.fechaPublicacion | date:'short' }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success" (click)="aprobar(productoSeleccionado!)">Aprobar</button>
+            <button class="btn btn-danger" (click)="rechazar(productoSeleccionado!)">Rechazar</button>
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-success" (click)="aprobar(productoSeleccionado!)">Aprobar</button>
-        <button class="btn btn-danger" (click)="rechazar(productoSeleccionado!)">Rechazar</button>
-        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      </div>
     </div>
-  </div>
-</div>
 
-<app-footer></app-footer>
+  </main>
+
+  <app-footer></app-footer>
+</div>

@@ -7,11 +7,13 @@ import { LogisticaGuard } from './guards/logistica.guard';
 // vistas
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { SuspendidoComponent } from './user/suspendido/suspendido.component';
 import { IndexComponent as AdminIndexComponent } from './admin/index/index.component';
 import { IndexComponent as UserIndexComponent } from './user/index/index.component';
 import { PerfilComponent } from './user/perfil/perfil.component';
 import { CardComponent } from './user/card/card.component';
 import { EmpleadosComponent } from './admin/empleados/empleados.component';
+import { ComunComponent } from './admin/comun/comun.component';
 import { UsuariosComponent } from './admin/usuarios/usuarios.component';
 import { EditComponent } from './admin/edit/edit.component';
 import { ProductoComponent } from './user/store/producto/producto.component';
@@ -20,6 +22,7 @@ import { EditarProductoComponent } from './user/store/editar-producto/editar-pro
 import { InicioComponent as ModeradorComponent } from './moderador/inicio/inicio.component';
 import { PerfilComponent as PerfilModeradorComp } from './moderador/perfil/perfil.component';
 import { TablaComponent } from './moderador/solicitudes/tabla/tabla.component';
+import { UsuariosComponent as ModeUserComponent } from './moderador/usuarios/usuarios.component';
 import { TiendaComponent } from './user/store/tienda/tienda.component';
 import { ProductoDetalleComponent } from './user/store/producto-detalle/producto-detalle.component';
 import { CartComponent } from './user/store/cart/cart.component';
@@ -37,11 +40,13 @@ export const routes: Routes = [
   /* ADMIN */
   { path: 'admin', component: AdminIndexComponent, canActivate: [AdminGuard] },
   { path: 'empleados', component: EmpleadosComponent, canActivate: [AdminGuard] },
+  { path: 'comun-user', component: ComunComponent, canActivate: [AdminGuard] },
   { path: 'crearUser', component: UsuariosComponent, canActivate: [AdminGuard] },
   { path: 'editarUser/:id', component: EditComponent, canActivate: [AdminGuard] },
 
   /* USER */
   { path: 'user', component: UserIndexComponent, canActivate: [UserGuard] },
+  { path: 'suspendido', component: SuspendidoComponent},
   { path: 'perfil', component: PerfilComponent, canActivate: [UserGuard] },
   { path: 'tarjeta', component: CardComponent, canActivate: [UserGuard] },
   { path: 'mi-producto', component: ProductoComponent, canActivate: [UserGuard] },
@@ -56,6 +61,7 @@ export const routes: Routes = [
   { path: 'moderador', component: ModeradorComponent, canActivate: [ModeradorGuard]},
   { path: 'perfilMod', component: PerfilModeradorComp, canActivate: [ModeradorGuard]},
   { path: 'solicitudProducto', component: TablaComponent, canActivate: [ModeradorGuard]},
+  { path: 'user-mod', component: ModeUserComponent, canActivate: [ModeradorGuard]},
 
   /* LOGISTICA */
   { path: 'logistica', component: LogisticaComponent, canActivate: [LogisticaGuard]},

@@ -26,9 +26,14 @@ export class HeaderComponent {
     this.router.navigate(['/moderador']);
   }
 
-  // boton empleados
+  // boton productos
   productos() {
     this.router.navigate(['/solicitudProducto']);
+  }
+
+  // boton usuarios
+  usuarios() {
+    this.router.navigate(['/user-mod']);
   }
 
   // boton para perfil

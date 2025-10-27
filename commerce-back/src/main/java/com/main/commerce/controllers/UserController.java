@@ -73,4 +73,40 @@ public class UserController {
         return ResponseEntity.ok(Map.of("message", "Usuario eliminado"));
     }
 
+    // obtener todos los usuarios excepto los COMUN
+    @GetMapping("/empleados")
+    public ResponseEntity<?> getAllEmployees() {
+        return ResponseEntity.ok(userService.findAllExceptComun());
+    }
+
+    // obtener solo usuarios comunes
+    @GetMapping("/comunes")
+    public ResponseEntity<?> getAllComunUsers() {
+        return ResponseEntity.ok(userService.findAllComun());
+    }
+
+    // suspender usuario por moderador
+    @PutMapping("/suspender/{id}")
+    public ResponseEntity<?> suspenderUsuario(@PathVariable Long id) {
+        User user = userService.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        user.setEstado("SUSPENDIDO");
+        userService.save(user);
+
+        return ResponseEntity.ok(Map.of("message", "Usuario suspendido correctamente"));
+    }
+
+    // activar usuario por moderador
+    @PutMapping("/activar/{id}")
+    public ResponseEntity<?> activarUsuario(@PathVariable Long id) {
+        User user = userService.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        user.setEstado("ACTIVO");
+        userService.save(user);
+
+        return ResponseEntity.ok(Map.of("message", "Usuario activado correctamente"));
+    }
+
 }
