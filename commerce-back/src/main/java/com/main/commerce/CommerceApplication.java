@@ -19,7 +19,11 @@ public class CommerceApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200")
+                        .allowedOrigins(
+                                "https://transcendent-arithmetic-f90c79.netlify.app", // frontend en Netlify
+                                "https://overrepresentatively-adularescent-madaline.ngrok-free.dev", // ngrok
+                                "http://localhost:4200" // local host xd
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);

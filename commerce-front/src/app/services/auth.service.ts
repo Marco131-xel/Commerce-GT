@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { HttpHeaders } from '@angular/common/http';
 import { User } from '../admin/models/user.model';
+import { environment } from '../../environments/environment';
 
 export interface JwtPayload {
   sub: string;
@@ -15,11 +16,13 @@ export interface JwtPayload {
   providedIn: 'root'
 })
 export class AuthService {
+
+  private baseUrl = environment.apiBaseUrl;
   
-  private apiUrl = 'http://localhost:8080/auth';
-  private userUrl = 'http://localhost:8080/user';
-  private cardUrl = 'http://localhost:8080/tarjeta';
-  private sanUrl = 'http://localhost:8080/sanciones';
+  private apiUrl = `${this.baseUrl}/auth`;
+  private userUrl = `${this.baseUrl}/user`;
+  private cardUrl = `${this.baseUrl}/tarjeta`;
+  private sanUrl = `${this.baseUrl}/sanciones`;
 
   constructor(private http: HttpClient) { }
   

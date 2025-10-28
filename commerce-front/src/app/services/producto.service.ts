@@ -4,14 +4,17 @@ import { Observable } from 'rxjs';
 import { Producto, Categoria, ProductoRequest } from '../user/models/producto.model';
 import { ProductoModerador } from '../moderador/models/producto.model';
 import { MeProducto, ProductoPublico } from '../user/models/producto.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
 
-    private apiUrl = 'http://localhost:8080/productos';
-    private categoriaUrl = 'http://localhost:8080/categorias';
+    private baseUrl = environment.apiBaseUrl;
+
+    private apiUrl = `${this.baseUrl}/productos`;
+    private categoriaUrl = `${this.baseUrl}/categorias`;
     
     constructor(private http: HttpClient) {}
     
